@@ -1,25 +1,5 @@
-// ==================== LOAD HTML MODULES ====================
-async function loadModule(elementId, filePath) {
-    try {
-        const response = await fetch(filePath);
-        const html = await response.text();
-        document.getElementById(elementId).innerHTML = html;
-    } catch (error) {
-        console.error(`Error loading ${filePath}:`, error);
-    }
-}
-
-// Load all modules
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadModule('nav-placeholder', 'modules/nav.html');
-    await loadModule('hero-placeholder', 'modules/hero.html');
-    await loadModule('about-placeholder', 'modules/about.html');
-    await loadModule('experience-placeholder', 'modules/experience.html');
-    await loadModule('projects-placeholder', 'modules/projects.html');
-    await loadModule('contact-placeholder', 'modules/contact.html');
-    await loadModule('footer-placeholder', 'modules/footer.html');
-    
-    // Initialize after modules are loaded
+// Simplified JS for GitHub Pages build
+document.addEventListener('DOMContentLoaded', () => {
     initializePortfolio();
 });
 
