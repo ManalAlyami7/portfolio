@@ -9,26 +9,279 @@
 </head>
 <body>
     <!-- Navigation -->
-    <div id="nav-placeholder"></div>
+    <nav class="nav">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Manal Alyami Logo" class="logo-img">
+            <div class="logo-text">Manal Alyami</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <!-- Hero Section -->
-    <div id="hero-placeholder"></div>
+    <!-- Banner Section -->
+    <section id="home" class="hero-banner">
+        <div class="banner-content">
+            <div class="banner-logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#4a6b5e" />
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="30" font-family="Arial">MA</text>
+                </svg>
+            </div>
+            <h1>Manal Alyami</h1>
+            <p class="subtitle">Data Scientist & AI Engineer</p>
+            <p>Building AI systems with exceptional user experience. Published IEEE researcher who combines data science expertise with user-centered design to create intuitive, impactful solutions deployed for 100K+ users.</p>
+            <div>
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
 
     <!-- About Section -->
-    <div id="about-placeholder"></div>
+    <section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a <span class="highlight">Data Scientist and AI Engineer</span> who believes that powerful technology should be intuitive and delightful to use. I don't just build AI systems—I craft experiences that users love.</p>
+                
+                <p>My approach combines <span class="highlight">technical excellence with user-centered design</span>. At Saudi Aramco, I didn't just analyze data—I created interactive dashboards that executives actually wanted to use, making complex insights accessible and actionable. The result? 15% performance improvement and 20% faster decision-making.</p>
+                
+                <p>I'm passionate about <span class="highlight">UX in AI systems</span>. My multilingual Smart Hajj chatbot serves 100K+ users with 94% accuracy and <2s response times because I obsessed over every interaction—from conversation flow to error handling to multilingual support. Good UX isn't optional; it's what makes technology valuable.</p>
+                
+                <p>Whether it's a production AI system, a data dashboard, or a mobile app, I <span class="highlight">put users first</span>. I combine expertise in Python, SQL, and modern AI frameworks (LangChain, LangGraph) with a deep understanding of how people actually interact with technology. The result is systems that are powerful, intuitive, and genuinely useful.</p>
+            </div>
+            
+            <div class="skills-section">
+                <div class="skill-category">
+                    <h3>UX & Design Thinking</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">User-Centered Design</span>
+                        <span class="skill-tag">Interaction Design</span>
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Wireframing</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">Usability Testing</span>
+                        <span class="skill-tag">Accessibility</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">OpenAI API</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">RAG</span>
+                        <span class="skill-tag">NLP</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data Science & Analytics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Data Visualization</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Development & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Supabase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Experience Section -->
-    <div id="experience-placeholder"></div>
+    <section id="experience" style="background: var(--light);">
+    <div class="container">
+        <h2>Experience & Education</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Data Analysis Intern (Cooperative Training)</div>
+                    <div class="experience-company">Saudi Aramco, Dhahran, Saudi Arabia</div>
+                    <div class="experience-date">January 2025 – March 2025</div>
+                </div>
+                <ul class="experience-achievements">
+                    <li>Analyzed 14K+ rows of operational data using Power BI and Excel to identify efficiency bottlenecks, delivering insights that improved departmental performance by 15%</li>
+                    <li>Designed and developed interactive Power BI dashboards with intuitive layouts and clear visualizations, enabling executives to identify bottlenecks 20% faster—recognized in Business Quarterly Review for exceptional usability</li>
+                    <li>Created user-friendly data storytelling presentations for senior management, translating complex analytics into actionable insights that influenced strategic decisions</li>
+                    <li>Collaborated cross-functionally with consultants and business analysts across 3 departments to align data models with organizational objectives</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Generative AI Bootcamp</div>
+                    <div class="experience-company">Saudi Digital Academy, Riyadh</div>
+                    <div class="experience-date">August 2024 – November 2024</div>
+                </div>
+                <ul class="experience-achievements">
+                    <li>Intensive training in production-ready AI systems, LLMs, and Generative AI frameworks</li>
+                    <li>Hands-on experience with LangChain, LangGraph, RAG systems, and AI agent orchestration</li>
+                    <li>Built and deployed real-world AI applications with focus on scalability and performance</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div class="experience-title">Bachelor of Information Technology</div>
+                    <div class="experience-company">King Saud University, Riyadh</div>
+                    <div class="experience-date">August 2020 – May 2025 | GPA: 4.69/5</div>
+                </div>
+                <ul class="experience-achievements">
+                    <li>Specialized in Data Science and AI Track</li>
+                    <li>Published researcher at IEEE ICOCO 2024</li>
+                    <li>Strong foundation in algorithms, data structures, and software engineering</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 4rem;">Certifications</h2>
+        <div class="certifications-grid">
+            <div class="cert-card">
+                <div class="cert-title">Microsoft Certified: Azure AI Fundamentals (AI-900)</div>
+                <div class="cert-issuer">Microsoft | November 2024</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-title">Fundamentals of Deep Learning</div>
+                <div class="cert-issuer">NVIDIA | November 2024</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-title">Power BI for Modern Analysts</div>
+                <div class="cert-issuer">Saudi Aramco | January 2025</div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Projects Section -->
-    <div id="projects-placeholder"></div>
+    <section id="projects">
+    <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Smart Hajj AI System</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Led design and development of a multilingual AI system with intuitive conversation flows for 2M+ annual Hajj pilgrims. Focused on accessibility, supporting Arabic, English, and Urdu with seamless voice and text interfaces.</p>
+                    <div class="project-metrics">
+                        <strong>UX Impact:</strong> 94% intent accuracy • <2s response time • Intuitive multilingual interface • Deployed for 1,000+ concurrent users • Real-time fraud detection with user-friendly alerts
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Supabase</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Rehaab EV System</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Published at IEEE ICOCO 2024. Designed user-friendly mobile app for electric vehicle reservations at Al-Masjid Al-Haram. Created intuitive booking flow and real-time availability system that dramatically improved user experience.</p>
+                    <div class="project-metrics">
+                        <strong>UX Impact:</strong> 60% reduction in wait times • Seamless reservation experience • Real-time vehicle tracking • 88% detection accuracy • Optimized crowd flow management
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">Flutter</span>
+                        <span class="tag">AI Optimization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Mental Health Sentiment Analysis</h3>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Developed predictive models using advanced NLP techniques to analyze mental health sentiment from text data, comparing multiple deep learning architectures.</p>
+                    <div class="project-metrics">
+                        <strong>Impact:</strong> 80% multi-class accuracy • 40K+ text samples analyzed • Statistical analysis & feature engineering
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">NLP</span>
+                        <span class="tag">LSTM</span>
+                        <span class="tag">GRU</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
-    <div id="contact-placeholder"></div>
+    <section id="contact" style="background: var(--light);">
+    <div class="container">
+        <div class="contact-content">
+            <h2>Let's Connect</h2>
+            <p style="color: var(--gray); font-size: 1.1rem; margin-bottom: 2rem;">
+                I'm actively seeking opportunities in Data Science and AI Engineering where I can build systems that combine technical excellence with exceptional user experience. Let's create solutions that users actually love.
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <a href="mailto:Manalalyami7@gmail.com">Manalalyami7@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                    <a href="https://linkedin.com/in/manal-alyami" target="_blank">LinkedIn Profile</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <a href="https://github.com/ManalAlyami7" target="_blank">GitHub Profile</a>
+                </div>
+              
+            </div>
+            <a href="mailto:Manalalyami7@gmail.com" class="btn" style="margin-top: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;">Send Message</a>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <footer>
+    <p>&copy; 2026 Manal Alyami. Data Scientist & AI Engineer | Riyadh, Saudi Arabia</p>
+</footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main-ghpages.js"></script>
 </body>
 </html>
