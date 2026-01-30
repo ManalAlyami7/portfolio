@@ -1,0 +1,585 @@
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2e5939;
+    --secondary: #5d8b6f;
+    --accent: #a67c00;
+    --primary-dark: #1e3d28;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --gray: #475569;
+    --white: #ffffff;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.75rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 3.5rem;
+    --spacing-xxl: 4.5rem;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Enhanced container spacing */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Enhanced section spacing */
+section {
+    padding: var(--spacing-xxl) 0;
+    margin: 0;
+}
+
+/* Enhanced responsive section spacing */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    section {
+        padding: var(--spacing-xl) 0;
+    }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.8; /* Increased from 1.7 for better readability */
+    color: var(--dark);
+    overflow-x: hidden;
+    font-size: 1.05rem;
+    background-color: #f9fafb;
+    font-weight: 400;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Enhanced Typography Hierarchy */
+h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-dark);
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    position: relative;
+    color: var(--primary);
+    padding-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary);
+    letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+    opacity: 0.8;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Enhanced header decorations */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(60px, 15vw, 80px);
+    height: 5px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+}
+
+.highlight {
+    color: var(--primary);
+    font-weight: 700;
+    background: rgba(46, 89, 57, 0.05);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* ==================== INTERACTIVE ELEMENTS ==================== */
+
+/* Enhanced UX: Consistent hover effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Pulse effect for CTA buttons */
+.btn-primary {
+    animation: subtle-pulse 2s infinite;
+    font-weight: 600; /* Slightly bolder buttons */
+    letter-spacing: 0.02em;
+}
+
+@keyframes subtle-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(46, 89, 57, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(46, 89, 57, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(46, 89, 57, 0);
+    }
+}
+
+.btn-primary:hover {
+    animation: none;
+}
+
+/* Number counter animation */
+.counter {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.counter.animate {
+    animation: count-up 1s ease-out forwards;
+}
+
+@keyframes count-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Smooth reveal animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+/* Section entrance animations */
+.section-enter {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-enter.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    z-index: 1000;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 10px;
+}
+
+/* Font Awesome Icons Specific Styles */
+i.fas,
+i.far,
+i.fab {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
+    font-weight: 900;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+/* Enhanced text elements */
+p {
+    line-height: 1.8; /* Consistent line height throughout */
+    margin-bottom: var(--spacing-md);
+    color: var(--dark);
+}
+
+/* Enhanced text elements */
+.text-lg {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    line-height: 1.7;
+}
+
+.text-sm {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    line-height: 1.6;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.leading-relaxed {
+    line-height: 1.8;
+}
+
+.tracking-tight {
+    letter-spacing: -0.025em;
+}
+
+/* Project Icon Specific Style */
+.project-icon i {
+    font-size: inherit;
+    color: inherit;
+}
+
+/* Contact Icon Specific Style */
+.contact-icon i {
+    font-size: inherit;
+    color: white;
+}
+
+/* Footer Icon Specific Style */
+.footer-content i {
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+/* Additional typography helpers */
+.text-lg {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    line-height: 1.7;
+}
+
+.text-sm {
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    line-height: 1.6;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.leading-relaxed {
+    line-height: 1.8;
+}
+
+.tracking-tight {
+    letter-spacing: -0.025em;
+}
+
+/* Social Proof Icons */
+.social-proof-content i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+/* Loading Indicator Styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.loading-spinner {
+    text-align: center;
+    color: white;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+.loading-spinner p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.9;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Additional spinner variations */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--light);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Hide loading indicator by default after page load */
+.loading-overlay {
+    opacity: 1;
+}
+
+/* Micro-interaction: Button hover effects */
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Micro-interaction: Card hover tilt */
+.card-tilt:hover {
+    transform: perspective(1000px) rotateY(5deg) rotateX(5deg);
+    transition: transform 0.3s ease;
+}
+
+/* Micro-interaction: Icon bounce */
+.icon-bounce:hover {
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* Performance optimization for loading */
+.loading-overlay {
+    will-change: opacity;
+}
+
+.spinner {
+    will-change: transform;
+}
+
+/* Component Loading States */
+.loading-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    min-height: 200px;
+    color: var(--gray);
+}
+
+.placeholder-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--light);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: var(--spacing-md);
+}
+
+.loading-placeholder p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Error States */
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xxl);
+    min-height: 300px;
+    text-align: center;
+    background: var(--light);
+    border-radius: var(--border-radius-lg);
+    border: 2px dashed var(--gray);
+    margin: var(--spacing-lg) 0;
+}
+
+.error-state h3 {
+    color: var(--primary-dark);
+    margin: var(--spacing-md) 0 var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.error-state p {
+    color: var(--gray);
+    margin: 0 0 var(--spacing-lg);
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.error-icon {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: var(--spacing-md);
+}
+
+.retry-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+}
+
+.retry-button:hover {
+    transform: translateY(-2px);
+}
+
+.retry-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    color: var(--primary);
+}
+
+.retry-loading .spinner {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--spacing-md);
+}
+
+.retry-loading p {
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Persistent Error State */
+.persistent-error {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.persistent-error .error-icon {
+    color: #dc2626;
+}
+
+.persistent-error h3 {
+    color: #991b1b;
+}
+
+.persistent-error p {
+    color: #b91c1c;
+}
+
+.error-details {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--light);
+}
+
+.error-details small {
+    color: var(--gray);
+    font-family: monospace;
+}
+
+/* Accessibility */
+.error-state[role="alert"] {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Focus states for retry buttons */
+.retry-button:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
