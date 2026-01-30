@@ -5,20 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manal Alyami - Data Scientist & AI Engineer Portfolio</title>
     <link rel="icon" type="image/x-icon" href="images/logo.png">
+    
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles/global.css" as="style">
+    <link rel="preload" href="images/logo.png" as="image">
+    <link rel="preload" href="images/banner.png" as="image">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Font loading optimization -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap">
     <meta name="description" content="Manal Alyami is a Data Scientist and AI Engineer specializing in user-centered AI systems, Generative AI, and data-driven products. Published IEEE researcher with experience at Saudi Aramco.">
     <meta name="keywords" content="Data Scientist, AI Engineer, Generative AI, Machine Learning, UX AI, LangChain, Power BI, Python, Saudi Arabia">
     <meta name="author" content="Manal Alyami">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://manalalyami7.github.io/portfolio/">
+    <meta property="og:title" content="Manal Alyami - Data Scientist & AI Engineer">
+    <meta property="og:description" content="Data Scientist who speaks both Python and User Experience. Building AI that feels intuitive, not intimidating. IEEE ICOCO 2024 • 1st Place GenAI Bootcamp • Saudi Aramco">
+    <meta property="og:image" content="https://manalalyami7.github.io/portfolio/images/og-image.jpg">
+    <meta property="og:image:alt" content="Manal Alyami - Data Scientist & AI Engineer Portfolio">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://manalalyami7.github.io/portfolio/">
+    
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="sitemap.xml">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#2e5939">
+    
+    <!-- GitHub Pages Compatibility -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- External CSS with preconnect -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Critical CSS -->
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/hero.css">
-    <link rel="stylesheet" href="styles/about.css">
-    <link rel="stylesheet" href="styles/experience.css">
-    <link rel="stylesheet" href="styles/projects.css">
-    <link rel="stylesheet" href="styles/social-proof.css">
-    <link rel="stylesheet" href="styles/contact.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Non-critical CSS (load after critical) -->
+    <link rel="prefetch" href="styles/about.css">
+    <link rel="prefetch" href="styles/experience.css">
+    <link rel="prefetch" href="styles/projects.css">
+    <link rel="prefetch" href="styles/social-proof.css">
+    <link rel="prefetch" href="styles/contact.css">
+    <link rel="prefetch" href="styles/footer.css">
+    <link rel="prefetch" href="styles/responsive.css">
 </head>
 <body>
     <a href="#home" class="skip-link">Skip to content</a>
@@ -67,12 +114,8 @@
 }
 </script>
     
-    <!-- Scripts -->
-    <script src="scripts/utils.js"></script>
-    <script src="scripts/navigation.js"></script>
-    <script src="scripts/projects.js"></script>
-    <script src="scripts/animations.js"></script>
-    <script src="scripts/micro-interactions.js"></script>
+    <!-- GitHub Pages Compatible Script Loader -->
+    <script src="scripts/github-pages-loader.js"></script>
     
     <script>
         // Dynamic component loader with comprehensive error handling
