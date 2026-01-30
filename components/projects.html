@@ -1,0 +1,311 @@
+<!-- Projects Section -->
+<section id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+        <h2 id="projects-heading">Projects Portfolio</h2>
+        <p class="section-subtitle">Production-ready systems with measurable impact</p>
+        <p class="section-subtitle">Explore selected featured projects first, or filter by domain to dive deeper.</p>
+        
+        <!-- Project Categories Filter -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
+            <button class="filter-btn" data-filter="data">Data Science</button>
+        </div>
+        
+        <!-- Timeline Toggle -->
+        <div class="timeline-toggle">
+            <label class="switch">
+                <input type="checkbox" id="timeline-view">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label">Timeline View</span>
+        </div>
+        
+        <div class="projects-grid" id="projects-grid">
+            <!-- Smart Hajj AI System -->
+            <div class="project-card featured" data-category="ai" data-date="2024-08">
+                <div class="project-timeline-dot"></div>
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                    <h3>Smart Hajj AI System</h3>
+                </div>
+                <!-- <figure class="project-image">
+                    <img src="images/smart-hajj-preview.jpg" alt="Multilingual AI chatbot interface showing Arabic and English responses" loading="lazy" onerror="this.style.display='none';">
+                    <figcaption>AI Chat Interface Preview</figcaption>
+                </figure> -->
+                <div class="project-content">
+                    <p class="project-hook">Revolutionary multilingual AI system serving 2M+ annual Hajj pilgrims with 94% accuracy and sub-2s response times.</p>
+                    <p class="project-desc">Led design and development of a multilingual AI system with intuitive conversation flows for 2M+ annual Hajj pilgrims. First place winner in the GenAI Bootcamp. Focused on accessibility, supporting Arabic, English, and Urdu with seamless voice and text interfaces. Created intelligent routing and real-time fraud prevention with user-friendly alerts.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Aug 2024 - Present</span>
+                        <span class="tag tag--metric" data-count="94">⚡ 94% Accuracy</span>
+                        <span class="tag tag--metric">⏱️ &lt;2s Response</span>
+                        <span class="tag tag--metric" data-count="1000">👥 1,000+ Users</span>
+                        <span class="tag tag--metric">🏆 1st Place</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Python</span>
+                        <span class="tag tag--tech">LangGraph</span>
+                        <span class="tag tag--tech">OpenAI API</span>
+                        <span class="tag tag--tech">Streamlit</span>
+                        <span class="tag tag--tech">SQLite</span>
+                        <span class="tag tag--tech">Supabase</span>
+                        <span class="tag tag--tech">Multilingual AI</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn btn-outline">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rehaab Graduation Project -->
+            <div class="project-card featured" data-category="mobile" data-date="2023-08">
+                <div class="project-timeline-dot"></div>
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-car" aria-hidden="true"></i></div>
+                    <h3>Rehaab - Graduation Project</h3>
+                </div>
+                <!-- <figure class="project-image">
+                    <img src="images/rehaab-preview.jpg" alt="Accessibility app interface for electric vehicle reservations at Al-Masjid Al-Haram" loading="lazy" onerror="this.style.display='none';">
+                    <figcaption>App Interface Preview</figcaption>
+                </figure> -->
+                <div class="project-content">
+                    <p class="project-hook">Published IEEE ICOCO 2024 paper featuring an accessibility solution for Al-Masjid Al-Haram visitors with mobility challenges.</p>
+                    <p class="project-desc">My graduation project, published at IEEE ICOCO 2024. An accessibility solution for Al-Masjid Al-Haram visitors, particularly the elderly and those with mobility challenges. Simplifies electric vehicle reservations, reduces wait times, and provides real-time tracking through a user-friendly app leveraging GPS and computer vision.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Aug 2023 - Jun 2024</span>
+                        <span class="tag tag--metric">📄 IEEE ICOCO 2024</span>
+                        <span class="tag tag--metric">♿ Accessibility</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Flutter</span>
+                        <span class="tag tag--tech">Dart</span>
+                        <span class="tag tag--tech">Computer Vision</span>
+                        <span class="tag tag--tech">GPS</span>
+                        <span class="tag tag--tech">AI</span>
+                        <span class="tag tag--tech">MySQL</span>
+                        <span class="tag tag--tech">Team Collaboration</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn btn-outline">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SmartFitness AI System -->
+            <div class="project-card featured" data-category="ai" data-date="2024-02">
+                <div class="project-timeline-dot"></div>
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-dumbbell" aria-hidden="true"></i></div>
+                    <h3>SmartFitness - Interactive AI Meal & Workout Planner</h3>
+                </div>
+                <!-- <figure class="project-image">
+                    <img src="images/smartfitness-preview.jpg" alt="AI-powered fitness and nutrition planning dashboard" loading="lazy" onerror="this.style.display='none';">
+                    <figcaption>Dashboard Preview</figcaption>
+                </figure> -->
+                <div class="project-content">
+                    <p class="project-hook">AI-powered fitness system using genetic algorithms to generate personalized exercise and meal plans with interactive web interface.</p>
+                    <p class="project-desc">An AI-powered system that generates personalized exercise and meal plans using genetic algorithms (GA). Currently being enhanced into an interactive web application that users can actively engage with. The system evolves highly suitable solutions over generations using selection, crossover, and mutation principles to achieve effective and balanced personal fitness plans.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Feb 2024 - Present</span>
+                        <span class="tag tag--metric">🧬 Genetic Algorithm</span>
+                        <span class="tag tag--metric">🌐 Interactive Web</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Python</span>
+                        <span class="tag tag--tech">Genetic Algorithm</span>
+                        <span class="tag tag--tech">AI</span>
+                        <span class="tag tag--tech">Optimization</span>
+                        <span class="tag tag--tech">Web Application</span>
+                        <span class="tag tag--tech">Interactive UI</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn btn-outline">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mental Health Sentiment Analysis -->
+            <div class="project-card" data-category="ai" data-date="2024-08">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+                    <h3>Sentiment Analysis for Mental Health</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/sentiment-analysis-preview.jpg" alt="Mental health sentiment analysis visualization dashboard" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">Analysis Dashboard Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-hook">Mental health sentiment analysis using Python and NLP with 78% accuracy and 77% F1-score.</p>
+                    <p class="project-desc">Conducted sentiment analysis on mental health discussions using Python and NLP techniques. Preprocessed textual data and applied multiple machine learning models including Logistic Regression, LSTM, and GRU to classify sentiments. Logistic Regression achieved the best performance with 78% accuracy and 77% F1-score.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Aug 2024 - Oct 2024</span>
+                        <span class="tag tag--metric" data-count="78">🎯 78% Accuracy</span>
+                        <span class="tag tag--metric">🧠 NLP Analysis</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Python</span>
+                        <span class="tag tag--tech">NLP</span>
+                        <span class="tag tag--tech">Sentiment Analysis</span>
+                        <span class="tag tag--tech">Deep Learning</span>
+                        <span class="tag tag--tech">LSTM</span>
+                        <span class="tag tag--tech">GRU</span>
+                        <span class="tag tag--tech">Text Preprocessing</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn btn-outline">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Good Read Data Science -->
+            <div class="project-card" data-category="data" data-date="2024-01">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-book" aria-hidden="true"></i></div>
+                    <h3>Good Read - Data-Driven Book Insights</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/good-read-preview.jpg" alt="Book recommendation system insights and analytics dashboard" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">Insights Dashboard Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-hook">Data science project analyzing book trends with up to 79.87% accuracy in predicting user interest.</p>
+                    <p class="project-desc">Conducted a data science project analyzing book trends using data scraped from Goodreads. Utilized BeautifulSoup for web scraping and enriched the dataset with attributes such as title, author, genre, rating, and pages. Built logistic regression and SVM models to predict user interest in books, achieving up to 79.87% accuracy.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Jan 2024 - May 2024</span>
+                        <span class="tag tag--metric" data-count="80">🎯 79.87% Accuracy</span>
+                        <span class="tag tag--metric" data-count="10000">📚 10K+ Books</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Python</span>
+                        <span class="tag tag--tech">Web Scraping</span>
+                        <span class="tag tag--tech">BeautifulSoup</span>
+                        <span class="tag tag--tech">EDA</span>
+                        <span class="tag tag--tech">Machine Learning</span>
+                        <span class="tag tag--tech">Logistic Regression</span>
+                        <span class="tag tag--tech">SVM</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn btn-outline">View Case Study →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ComfortKeys Property Rental -->
+            <div class="project-card" data-category="web" data-date="2023-06">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
+                    <h3>ComfortKeys - Property Rental Platform</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/comfortkeys-preview.jpg" alt="Property rental platform interface with homeowner and renter views" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">Platform Interface Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Designed and developed a responsive web application using HTML, CSS, JavaScript, and MySQL for the property rental market. The platform features two user roles: homeowners, who can list their properties, and home seekers, who can browse available rentals and view detailed property information.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Jun 2023 - Nov 2023</span>
+                        <span class="tag tag--metric">🏠 Property Rental</span>
+                        <span class="tag tag--metric">👥 Dual Role System</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">HTML</span>
+                        <span class="tag tag--tech">CSS</span>
+                        <span class="tag tag--tech">JavaScript</span>
+                        <span class="tag tag--tech">MySQL</span>
+                        <span class="tag tag--tech">PHP</span>
+                        <span class="tag tag--tech">UI Design</span>
+                        <span class="tag tag--tech">Role Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Melody Music Rental App -->
+            <div class="project-card" data-category="mobile" data-date="2023-05">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-music" aria-hidden="true"></i></div>
+                    <h3>Melody - Music Instrument Rental</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/melody-app-preview.jpg" alt="Music instrument rental app interface with owner and renter roles" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">App Interface Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Developed a cross-platform mobile application using Dart and Flutter for renting musical instruments. The app supports two user roles: owners, who can list instruments for rent, and renters, who can browse, search, and rent available instruments. Focused on UI/UX design, state management, and responsive layouts.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 May 2023 - Oct 2023</span>
+                        <span class="tag tag--metric">🎵 Music Instruments</span>
+                        <span class="tag tag--metric">📱 Cross-Platform</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">Flutter</span>
+                        <span class="tag tag--tech">Dart</span>
+                        <span class="tag tag--tech">Android Development</span>
+                        <span class="tag tag--tech">UI/UX Design</span>
+                        <span class="tag tag--tech">State Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Prediction -->
+            <div class="project-card" data-category="data" data-date="2023-03">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-cloud-sun" aria-hidden="true"></i></div>
+                    <h3>Weather Prediction using R</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/weather-prediction-preview.jpg" alt="Weather prediction model visualization and forecasting dashboard" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">Prediction Dashboard Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Developed a weather prediction model using R, focused on forecasting temperature and weather conditions. The project involved data preprocessing, feature selection, and implementing machine learning algorithms such as regression and classification. Visualized the results using R packages like ggplot2.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 Mar 2023 - May 2023</span>
+                        <span class="tag tag--metric">🌦️ Weather Prediction</span>
+                        <span class="tag tag--metric">📊 R Programming</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">R Programming</span>
+                        <span class="tag tag--tech">Data Mining</span>
+                        <span class="tag tag--tech">Data Preprocessing</span>
+                        <span class="tag tag--tech">Machine Learning</span>
+                        <span class="tag tag--tech">ggplot2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare Platform -->
+            <div class="project-card" data-category="web" data-date="2022-05">
+                <div class="project-header">
+                    <div class="project-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+                    <h3>Hope - Healthcare Platform</h3>
+                </div>
+                <div class="project-image">
+                    <img src="images/healthcare-platform-preview.jpg" alt="Healthcare platform interface with doctor and patient role management" loading="lazy" onerror="this.style.display='none';">
+                    <div class="image-overlay">Platform Interface Preview</div>
+                </div>
+                <div class="project-content">
+                    <p class="project-desc">Built a healthcare platform web application using HTML, CSS, and JavaScript. The platform includes two main roles: doctors, who can manage appointments and profiles, and patients, who can book appointments and access medical information. Designed with user-friendly navigation and responsive layout to ensure accessibility and smooth interaction.</p>
+                    <div class="project-metrics">
+                        <span class="tag tag--metric-date">📅 May 2022 - Oct 2022</span>
+                        <span class="tag tag--metric">🏥 Healthcare Platform</span>
+                        <span class="tag tag--metric">👥 Doctor-Patient Roles</span>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag tag--tech">HTML5</span>
+                        <span class="tag tag--tech">CSS</span>
+                        <span class="tag tag--tech">JavaScript</span>
+                        <span class="tag tag--tech">Responsive Design</span>
+                        <span class="tag tag--tech">User Role Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center" style="margin-top: 3rem;">
+            <button id="show-more-btn" class="btn btn-primary">Show More Projects</button>
+        </div>
+    </div>
+</section>
