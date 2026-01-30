@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://manalalyami7.github.io/portfolio/sitemap.xml
+
+# Crawl delay (optional - uncomment if needed)
+# Crawl-delay: 1
+
+# Disallow certain file types or directories if needed
+# Disallow: /private/
+# Disallow: /*.pdf$
+
+# Host directive (for Bing)
+# Host: https://manalalyami7.github.io/portfolio/
