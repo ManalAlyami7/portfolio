@@ -1,287 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manal Alyami - Data Scientist & AI Engineer Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <meta name="description" content="Manal Alyami is a Data Scientist and AI Engineer specializing in user-centered AI systems, Generative AI, and data-driven products. Published IEEE researcher with experience at Saudi Aramco.">
+    <meta name="keywords" content="Data Scientist, AI Engineer, Generative AI, Machine Learning, UX AI, LangChain, Power BI, Python, Saudi Arabia">
+    <meta name="author" content="Manal Alyami">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/about.css">
+    <link rel="stylesheet" href="styles/experience.css">
+    <link rel="stylesheet" href="styles/projects.css">
+    <link rel="stylesheet" href="styles/social-proof.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="logo-container">
-            <img src="images/logo.png" alt="Manal Alyami Logo" class="logo-img">
-            <div class="logo-text">Manal Alyami</div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Banner Section -->
-    <section id="home" class="hero-banner">
-        <div class="banner-content">
-            <div class="banner-logo">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="45" fill="#4a6b5e" />
-                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="30" font-family="Arial">MA</text>
-                </svg>
-            </div>
-            <h1>Manal Alyami</h1>
-            <p class="subtitle">Data Scientist & AI Engineer</p>
-            <p>Building AI systems with exceptional user experience. Published IEEE researcher who combines data science expertise with user-centered design to create intuitive, impactful solutions deployed for 100K+ users.</p>
-            <div>
-                <a href="#projects" class="btn">View My Work</a>
-                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    <a href="#home" class="skip-link">Skip to content</a>
+    <main>
+        <!-- Loading indicator -->
+        <div id="loading-indicator" class="loading-overlay">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Loading portfolio...</p>
             </div>
         </div>
-    </section>
+        
+        <!-- Components will be loaded here by JavaScript -->
+        <div id="header-component"></div>
+        <div id="hero-component"></div>
+        <div id="about-component"></div>
+        <div id="projects-component"></div>
+        <div id="experience-component"></div>
+        <div id="social-proof-component"></div>
+        <div id="contact-component"></div>
+    </main>
+    <div id="footer-component"></div>
+    
 
-    <!-- About Section -->
-    <section id="about">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I'm a <span class="highlight">Data Scientist and AI Engineer</span> who believes that powerful technology should be intuitive and delightful to use. I don't just build AI systems—I craft experiences that users love.</p>
-                
-                <p>My approach combines <span class="highlight">technical excellence with user-centered design</span>. At Saudi Aramco, I didn't just analyze data—I created interactive dashboards that executives actually wanted to use, making complex insights accessible and actionable. The result? 15% performance improvement and 20% faster decision-making.</p>
-                
-                <p>I'm passionate about <span class="highlight">UX in AI systems</span>. My multilingual Smart Hajj chatbot serves 100K+ users with 94% accuracy and <2s response times because I obsessed over every interaction—from conversation flow to error handling to multilingual support. Good UX isn't optional; it's what makes technology valuable.</p>
-                
-                <p>Whether it's a production AI system, a data dashboard, or a mobile app, I <span class="highlight">put users first</span>. I combine expertise in Python, SQL, and modern AI frameworks (LangChain, LangGraph) with a deep understanding of how people actually interact with technology. The result is systems that are powerful, intuitive, and genuinely useful.</p>
-            </div>
+    
+    <!-- Schema markup -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Manal Alyami",
+  "jobTitle": "Data Scientist & AI Engineer",
+  "url": "https://manalalyami7.github.io/portfolio",
+  "sameAs": [
+    "https://www.linkedin.com/in/manal-alyami",
+    "https://github.com/ManalAlyami7"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Saudi Aramco"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "King Saud University"
+  }
+}
+</script>
+    
+    <!-- Scripts -->
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/projects.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/micro-interactions.js"></script>
+    
+    <script>
+        // Dynamic component loader with comprehensive error handling
+        async function loadComponent(componentName, targetElementId) {
+            const targetElement = document.getElementById(targetElementId);
             
-            <div class="skills-section">
-                <div class="skill-category">
-                    <h3>UX & Design Thinking</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">User-Centered Design</span>
-                        <span class="skill-tag">Interaction Design</span>
-                        <span class="skill-tag">User Research</span>
-                        <span class="skill-tag">Wireframing</span>
-                        <span class="skill-tag">Prototyping</span>
-                        <span class="skill-tag">Usability Testing</span>
-                        <span class="skill-tag">Accessibility</span>
+            // Show loading state
+            if (targetElement) {
+                targetElement.innerHTML = `
+                    <div class="loading-placeholder">
+                        <div class="placeholder-spinner"></div>
+                        <p>Loading ${componentName}...</p>
                     </div>
-                </div>
+                `;
+            }
+            
+            try {
+                const response = await fetch(`components/${componentName}.html`);
                 
-                <div class="skill-category">
-                    <h3>AI & Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">LangChain</span>
-                        <span class="skill-tag">LangGraph</span>
-                        <span class="skill-tag">OpenAI API</span>
-                        <span class="skill-tag">Hugging Face</span>
-                        <span class="skill-tag">RAG</span>
-                        <span class="skill-tag">NLP</span>
-                    </div>
-                </div>
+                if (response.ok) {
+                    const html = await response.text();
+                    if (targetElement) {
+                        targetElement.innerHTML = html;
+                    }
+                    return true; // Success
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error(`Failed to load ${componentName}:`, error);
                 
-                <div class="skill-category">
-                    <h3>Data Science & Analytics</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Statistical Analysis</span>
-                        <span class="skill-tag">Data Visualization</span>
+                // Show user-friendly error state
+                if (targetElement) {
+                    targetElement.innerHTML = `
+                        <div class="error-state" role="alert">
+                            <div class="error-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>Content temporarily unavailable</h3>
+                            <p>Unable to load the ${componentName} section. This might be due to a network issue.</p>
+                            <button class="btn btn-outline retry-button" onclick="retryLoadComponent('${componentName}', '${targetElementId}')">
+                                <i class="fas fa-redo"></i> Try Again
+                            </button>
+                        </div>
+                    `;
+                }
+                return false; // Failure
+            }
+        }
+        
+        // Retry function for failed components
+        async function retryLoadComponent(componentName, targetElementId) {
+            const targetElement = document.getElementById(targetElementId);
+            if (targetElement) {
+                targetElement.innerHTML = `
+                    <div class="retry-loading">
+                        <div class="spinner"></div>
+                        <p>Retrying...</p>
                     </div>
-                </div>
+                `;
+            }
+            
+            // Wait a moment before retrying
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            const success = await loadComponent(componentName, targetElementId);
+            
+            if (!success) {
+                // If retry fails, show a more persistent error
+                const targetElement = document.getElementById(targetElementId);
+                if (targetElement) {
+                    targetElement.innerHTML = `
+                        <div class="error-state persistent-error" role="alert">
+                            <div class="error-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <h3>Still having trouble</h3>
+                            <p>We're unable to load this content right now. Please try refreshing the page or come back later.</p>
+                            <div class="error-details">
+                                <small>Error: Component ${componentName} failed to load</small>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // Load all components when DOM is ready
+        document.addEventListener('DOMContentLoaded', async function() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            
+            try {
+                // Phase 1: Load critical above-the-fold components first (immediate render)
+                await Promise.all([
+                    loadComponent('header', 'header-component'),
+                    loadComponent('hero', 'hero-component')
+                ]);
                 
-                <div class="skill-category">
-                    <h3>Development & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git/GitHub</span>
-                        <span class="skill-tag">Streamlit</span>
-                        <span class="skill-tag">Azure</span>
-                        <span class="skill-tag">Flutter</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">Supabase</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+                // Hide loading indicator after critical components load
+                if (loadingIndicator) {
+                    loadingIndicator.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 300);
+                }
+                
+                // Phase 2: Load essential content components in parallel
+                const essentialComponents = Promise.all([
+                    loadComponent('about', 'about-component'),
+                    loadComponent('projects', 'projects-component')
+                ]);
+                
+                // Phase 3: Load secondary components with lower priority (fire and forget)
+                const secondaryComponents = Promise.allSettled([
+                    loadComponent('experience', 'experience-component'),
+                    loadComponent('social-proof', 'social-proof-component'),
+                    loadComponent('contact', 'contact-component'),
+                    loadComponent('footer', 'footer-component')
+                ]);
+                
+                // Initialize functionality after essential components are loaded
+                essentialComponents.then(() => {
+                    setTimeout(() => {
+                        // Initialize social proof expand functionality
+                        initSocialProofExpand();
+                        
+                        // Initialize show more projects functionality
+                        initShowMoreProjects();
+                        
+                        // Set current year in footer
+                        const currentYearElement = document.getElementById('current-year');
+                        if (currentYearElement) {
+                            currentYearElement.textContent = new Date().getFullYear();
+                        }
+                        
+                        // Set update date in footer
+                        const updateDateElement = document.getElementById('update-date');
+                        if (updateDateElement) {
+                            const today = new Date();
+                            const formattedDate = today.toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            });
+                            updateDateElement.textContent = formattedDate;
+                        }
+                    }, 100);
+                });
+                
+                // Handle any loading errors gracefully
+                secondaryComponents.catch(error => {
+                    console.warn('Non-critical component loading failed:', error);
+                });
+                
+            } catch (error) {
+                console.error('Critical component loading failed:', error);
+                // Hide loading indicator even on error
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+            }
+        });
+        
+        function initSocialProofExpand() {
+            const seeMoreButtons = document.querySelectorAll('.see-more-btn');
+            
+            seeMoreButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.recommendation-card');
+                    const previewQuote = card.querySelector('.preview-quote');
+                    const fullQuote = card.querySelector('.full-quote');
+                    
+                    if (fullQuote.style.display === 'none') {
+                        // Expand the quote
+                        previewQuote.style.display = 'none';
+                        fullQuote.style.display = 'block';
+                        this.textContent = 'Show less';
+                    } else {
+                        // Collapse the quote
+                        fullQuote.style.display = 'none';
+                        previewQuote.style.display = 'block';
+                        this.textContent = 'Read more';
+                    }
+                });
+            });
+        }
+        
+        // Initialize show more projects functionality
+        function initShowMoreProjects() {
+            const showMoreBtn = document.getElementById('show-more-btn');
+            const projectsGrid = document.getElementById('projects-grid');
+            if (!projectsGrid) return;
+            
+            const allProjects = projectsGrid.querySelectorAll('.project-card:not(.featured)');
+            
+            // Initially hide non-featured projects
+            allProjects.forEach(project => {
+                project.style.display = 'none';
+            });
+            
+            if (showMoreBtn) {
+                showMoreBtn.addEventListener('click', function() {
+                    const hiddenProjects = projectsGrid.querySelectorAll('.project-card:hidden');
+                    
+                    if (hiddenProjects.length > 0) {
+                        // Show all hidden projects
+                        Array.from(hiddenProjects).forEach(project => {
+                            project.style.display = 'flex';
+                            // Trigger reflow to ensure proper display
+                            project.offsetHeight;
+                        });
+                        
+                        this.textContent = 'Show Less';
+                    } else {
+                        // Hide non-featured projects again
+                        allProjects.forEach(project => {
+                            project.style.display = 'none';
+                        });
+                        
+                        this.textContent = 'Show More Projects';
+                    }
+                });
+            }
+        }
+    </script>
 
-    <!-- Experience Section -->
-    <section id="experience" style="background: var(--light);">
-    <div class="container">
-        <h2>Experience & Education</h2>
-        <div class="experience-timeline">
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Data Analysis Intern (Cooperative Training)</div>
-                    <div class="experience-company">Saudi Aramco, Dhahran, Saudi Arabia</div>
-                    <div class="experience-date">January 2025 – March 2025</div>
-                </div>
-                <ul class="experience-achievements">
-                    <li>Analyzed 14K+ rows of operational data using Power BI and Excel to identify efficiency bottlenecks, delivering insights that improved departmental performance by 15%</li>
-                    <li>Designed and developed interactive Power BI dashboards with intuitive layouts and clear visualizations, enabling executives to identify bottlenecks 20% faster—recognized in Business Quarterly Review for exceptional usability</li>
-                    <li>Created user-friendly data storytelling presentations for senior management, translating complex analytics into actionable insights that influenced strategic decisions</li>
-                    <li>Collaborated cross-functionally with consultants and business analysts across 3 departments to align data models with organizational objectives</li>
-                </ul>
-            </div>
 
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Generative AI Bootcamp</div>
-                    <div class="experience-company">Saudi Digital Academy, Riyadh</div>
-                    <div class="experience-date">August 2024 – November 2024</div>
-                </div>
-                <ul class="experience-achievements">
-                    <li>Intensive training in production-ready AI systems, LLMs, and Generative AI frameworks</li>
-                    <li>Hands-on experience with LangChain, LangGraph, RAG systems, and AI agent orchestration</li>
-                    <li>Built and deployed real-world AI applications with focus on scalability and performance</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Bachelor of Information Technology</div>
-                    <div class="experience-company">King Saud University, Riyadh</div>
-                    <div class="experience-date">August 2020 – May 2025 | GPA: 4.69/5</div>
-                </div>
-                <ul class="experience-achievements">
-                    <li>Specialized in Data Science and AI Track</li>
-                    <li>Published researcher at IEEE ICOCO 2024</li>
-                    <li>Strong foundation in algorithms, data structures, and software engineering</li>
-                </ul>
-            </div>
-        </div>
-
-        <h2 style="margin-top: 4rem;">Certifications</h2>
-        <div class="certifications-grid">
-            <div class="cert-card">
-                <div class="cert-title">Microsoft Certified: Azure AI Fundamentals (AI-900)</div>
-                <div class="cert-issuer">Microsoft | November 2024</div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-title">Fundamentals of Deep Learning</div>
-                <div class="cert-issuer">NVIDIA | November 2024</div>
-            </div>
-            <div class="cert-card">
-                <div class="cert-title">Power BI for Modern Analysts</div>
-                <div class="cert-issuer">Saudi Aramco | January 2025</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-    <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Smart Hajj AI System</h3>
-                </div>
-                <div class="project-content">
-                    <p class="project-desc">Led design and development of a multilingual AI system with intuitive conversation flows for 2M+ annual Hajj pilgrims. Focused on accessibility, supporting Arabic, English, and Urdu with seamless voice and text interfaces.</p>
-                    <div class="project-metrics">
-                        <strong>UX Impact:</strong> 94% intent accuracy • <2s response time • Intuitive multilingual interface • Deployed for 1,000+ concurrent users • Real-time fraud detection with user-friendly alerts
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">LangGraph</span>
-                        <span class="tag">OpenAI API</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">SQLite</span>
-                        <span class="tag">Supabase</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-car-side"></i></div>
-                    <h3>Rehaab EV System</h3>
-                </div>
-                <div class="project-content">
-                    <p class="project-desc">Published at IEEE ICOCO 2024. Designed user-friendly mobile app for electric vehicle reservations at Al-Masjid Al-Haram. Created intuitive booking flow and real-time availability system that dramatically improved user experience.</p>
-                    <div class="project-metrics">
-                        <strong>UX Impact:</strong> 60% reduction in wait times • Seamless reservation experience • Real-time vehicle tracking • 88% detection accuracy • Optimized crowd flow management
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">Computer Vision</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Flutter</span>
-                        <span class="tag">AI Optimization</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-header">
-                    <div class="project-icon"><i class="fas fa-brain"></i></div>
-                    <h3>Mental Health Sentiment Analysis</h3>
-                </div>
-                <div class="project-content">
-                    <p class="project-desc">Developed predictive models using advanced NLP techniques to analyze mental health sentiment from text data, comparing multiple deep learning architectures.</p>
-                    <div class="project-metrics">
-                        <strong>Impact:</strong> 80% multi-class accuracy • 40K+ text samples analyzed • Statistical analysis & feature engineering
-                    </div>
-                    <div class="project-tags">
-                        <span class="tag">NLP</span>
-                        <span class="tag">LSTM</span>
-                        <span class="tag">GRU</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Machine Learning</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="background: var(--light);">
-    <div class="container">
-        <div class="contact-content">
-            <h2>Let's Connect</h2>
-            <p style="color: var(--gray); font-size: 1.1rem; margin-bottom: 2rem;">
-                I'm actively seeking opportunities in Data Science and AI Engineering where I can build systems that combine technical excellence with exceptional user experience. Let's create solutions that users actually love.
-            </p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <a href="mailto:Manalalyami7@gmail.com">Manalalyami7@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                    <a href="https://linkedin.com/in/manal-alyami" target="_blank">LinkedIn Profile</a>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-github"></i></div>
-                    <a href="https://github.com/ManalAlyami7" target="_blank">GitHub Profile</a>
-                </div>
-              
-            </div>
-            <a href="mailto:Manalalyami7@gmail.com" class="btn" style="margin-top: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;">Send Message</a>
-        </div>
-    </div>
-</section>
-
-    <!-- Footer -->
-    <footer>
-    <p>&copy; 2026 Manal Alyami. Data Scientist & AI Engineer | Riyadh, Saudi Arabia</p>
-</footer>
-
-    <script src="js/main-ghpages.js"></script>
 </body>
 </html>
