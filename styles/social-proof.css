@@ -114,7 +114,7 @@
 /* #social-proof::before, #contact::before, #projects::before, {
     content: "";
     position: absolute;
-    top: 0;
+    top: 0;git
     left: 0;
     width: 100%;
     height: 6px;
@@ -245,6 +245,19 @@
 .recommendation-text,
 .recommendation-content {
     margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-md);
+    border-left: 4px solid var(--accent-bright);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.recommendation-text:hover,
+.recommendation-content:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-left-width: 6px;
 }
 
 .recommendation-text p,
@@ -253,6 +266,27 @@
     font-size: 1.05rem;
     margin-bottom: var(--spacing-md);
     line-height: 1.7;
+    font-weight: 400;
+    text-align: left;
+}
+
+.recommendation-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Enhanced styling for recommendation quotes */
+.recommendation-content blockquote {
+    margin: 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid var(--accent-bright);
+    background: rgba(46, 89, 57, 0.05);
+    font-style: italic;
+}
+
+.recommendation-content blockquote p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
 }
 
 .truncated-text {

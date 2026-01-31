@@ -888,7 +888,7 @@ html {
 }
 
 .btn-case-study::after {
-    content: 'VIEW CASE STUDY';
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
