@@ -49,13 +49,25 @@
     <!-- GitHub Pages Compatibility -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Immediate error handling for loader issues -->
+    <script>
+        window.addEventListener('error', function(e) {
+            if (e.filename && (e.filename.includes('github-pages-loader') || e.filename.includes('portfolio')) && 
+                e.message && e.message.includes('Cannot read properties of undefined')) {
+                console.warn('⚠️ Intercepted GitHub Pages loader error, continuing gracefully');
+                e.preventDefault();
+                return true;
+            }
+        });
+    </script>
+    
     <!-- External CSS -->
-    <link rel="stylesheet" href="styles/fontawesome-local.css">
+    <link rel="stylesheet" href="styles/fontawesome-local.css?v=1.1">
     
     <!-- Critical CSS -->
-    <link rel="stylesheet" href="styles/global.css">
-    <link rel="stylesheet" href="styles/navigation.css">
-    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/global.css?v=1.1">
+    <link rel="stylesheet" href="styles/navigation.css?v=1.1">
+    <link rel="stylesheet" href="styles/hero.css?v=1.1">
     
     <!-- Component CSS -->
     <link rel="stylesheet" href="styles/projects.css">
@@ -115,7 +127,7 @@
     <script src="scripts/github-debug.js"></script>
     
     <!-- GitHub Pages Compatible Script Loader -->
-    <script src="scripts/github-pages-loader.js"></script>
+    <script src="scripts/github-pages-loader-enhanced.js?v=1.1"></script>
     
     <script>
         // Dynamic component loader with comprehensive error handling

@@ -111,7 +111,7 @@
     position: relative;
 }
 
-*::before {
+/* #social-proof::before, #contact::before, #projects::before, {
     content: "";
     position: absolute;
     top: 0;
@@ -121,7 +121,7 @@
     background: linear-gradient(90deg, var(--accent-bright), var(--primary), var(--accent-coral), var(--primary), var(--accent-bright));
     background-size: 200% 100%;
     animation: gradientShift 3s ease-in-out infinite;
-}
+} */
 
 #social-proof h2 {
     text-align: center;
