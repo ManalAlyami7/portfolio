@@ -8,7 +8,8 @@
         { src: 'scripts/navigation.js', defer: false },
         { src: 'scripts/portfolio-master.js', defer: true },
         { src: 'scripts/animations.js', defer: true },
-        { src: 'scripts/micro-interactions.js', defer: true }
+        { src: 'scripts/micro-interactions.js', defer: true },
+        { src: 'scripts/social-proof.js', defer: true }
     ];
     
     // Enhanced script loading with comprehensive error handling
