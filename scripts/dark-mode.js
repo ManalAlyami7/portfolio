@@ -1,8 +1,12 @@
 // Dark Mode Toggle Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🎨 Dark mode script loaded');
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const body = document.body;
+    
+    console.log('🔍 Theme toggle element:', themeToggle);
+    console.log('🔍 Theme icon element:', themeIcon);
     
     // Check for saved theme preference or default to 'light'
     const savedTheme = localStorage.getItem('theme') || 'light';

@@ -1,7 +1,16 @@
 // ==================== SOCIAL PROOF EXPAND/COLLAPSE FUNCTIONALITY ====================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('👥 Social proof script loaded');
+    
     // Handle "See more..." buttons in social proof section
     const seeMoreButtons = document.querySelectorAll('.see-more-btn');
+    
+    console.log('🔍 See more buttons found:', seeMoreButtons.length);
+    
+    if (seeMoreButtons.length === 0) {
+        console.warn('⚠️ No see more buttons found!');
+        return;
+    }
     
     seeMoreButtons.forEach(button => {
         button.addEventListener('click', function() {

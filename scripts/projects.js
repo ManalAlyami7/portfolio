@@ -1,9 +1,15 @@
 // ==================== PROJECT FILTERING AND TIMELINE ====================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Projects script loaded');
+    
     // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     const projectsGrid = document.getElementById('projects-grid');
+    
+    console.log('📊 Filter buttons found:', filterButtons.length);
+    console.log('📊 Project cards found:', projectCards.length);
+    console.log('📊 Projects grid element:', projectsGrid);
     
     // Initialize show more projects functionality
     const showMoreBtn = document.getElementById('show-more-btn');
