@@ -401,5 +401,85 @@
     </script>
 
 
+    <!-- Fallback for critical functionality -->
+    <script>
+        // Manual initialization fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔄 Manual initialization fallback triggered');
+            
+            // Dark mode fallback
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeToggle && themeIcon) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    
+                    if (newTheme === 'dark') {
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                    } else {
+                        themeIcon.classList.remove('fa-sun');
+                        themeIcon.classList.add('fa-moon');
+                    }
+                    
+                    console.log('🌙 Manual dark mode toggle:', newTheme);
+                });
+            }
+            
+            // Projects filter fallback
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            if (filterButtons.length > 0 && projectCards.length > 0) {
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        const filter = button.dataset.filter;
+                        projectCards.forEach(card => {
+                            if (filter === 'all' || card.dataset.category === filter) {
+                                card.classList.remove('hidden');
+                                card.style.display = 'flex';
+                            } else {
+                                card.classList.add('hidden');
+                                card.style.display = 'none';
+                            }
+                        });
+                        console.log('🎯 Manual filter applied:', filter);
+                    });
+                });
+            }
+            
+            // Social proof fallback
+            const seeMoreButtons = document.querySelectorAll('.see-more-btn');
+            if (seeMoreButtons.length > 0) {
+                seeMoreButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const card = this.closest('.recommendation-card');
+                        const truncatedText = card.querySelector('.truncated-text');
+                        const fullText = card.querySelector('.full-text');
+                        
+                        if (truncatedText && fullText) {
+                            const isExpanded = truncatedText.style.display === 'none';
+                            if (isExpanded) {
+                                truncatedText.style.display = 'block';
+                                fullText.style.display = 'none';
+                                this.textContent = 'See more...';
+                            } else {
+                                truncatedText.style.display = 'none';
+                                fullText.style.display = 'block';
+                                this.textContent = 'Show less';
+                            }
+                            console.log('👥 Manual social proof toggle');
+                        }
+                    });
+                });
+            }
+            
+            console.log('✅ Manual initialization completed');
+        });
+    </script>
 </body>
 </html>
