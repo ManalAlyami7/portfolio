@@ -24,13 +24,34 @@
     
     <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Font Awesome with error handling -->
+    <script>
+        // Handle Font Awesome loading errors
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'LINK' && e.target.href && e.target.href.includes('font-awesome')) {
+                console.warn('⚠️ Font Awesome failed to load, using fallbacks');
+                // Add fallback CSS for common icons
+                const fallbackCSS = `
+                    .fa-github:before { content: "GH"; }
+                    .fa-linkedin:before { content: "LI"; }
+                    .fa-envelope:before { content: "📧"; }
+                    .fa-download:before { content: "⬇️"; }
+                    .fa-external-link-alt:before { content: "↗️"; }
+                `;
+                const style = document.createElement('style');
+                style.textContent = fallbackCSS;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="styles/global.css" as="style">
     <link rel="preload" href="images/logo.png" as="image">
     <link rel="preload" href="images/banner.png" as="image">
-    <link rel="preload" href="styles/fontawesome-local.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <!-- Font loading optimization -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" as="style">
@@ -78,7 +99,7 @@
     </script>
     
     <!-- External CSS -->
-    <link rel="stylesheet" href="styles/fontawesome-local.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Critical CSS -->
     <link rel="stylesheet" href="styles/global.css?v=1.1">
