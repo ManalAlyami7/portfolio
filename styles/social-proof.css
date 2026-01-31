@@ -248,7 +248,6 @@
     padding: var(--spacing-md);
     background: var(--bg-secondary);
     border-radius: var(--border-radius-md);
-    border-left: 4px solid var(--accent-bright);
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
