@@ -318,7 +318,10 @@
             
             if (showMoreBtn) {
                 showMoreBtn.addEventListener('click', function() {
-                    const hiddenProjects = projectsGrid.querySelectorAll('.project-card:hidden');
+                    const hiddenProjects = Array.from(projectsGrid.querySelectorAll('.project-card')).filter(card => 
+                        card.style.display === 'none' || 
+                        getComputedStyle(card).display === 'none'
+                    );
                     
                     if (hiddenProjects.length > 0) {
                         // Show all hidden projects
