@@ -128,27 +128,7 @@
         margin: 0.25rem;
     }
     
-    /* Disable timeline view on mobile - too complex for small screens */
-    .projects-grid.timeline-view {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        padding-left: 0 !important;
-        gap: var(--spacing-xl) !important;
-    }
-    
-    .projects-grid.timeline-view .project-card {
-        margin: 0 !important;
-        padding-left: 0 !important;
-    }
-    
-    .projects-grid.timeline-view .project-card::before,
-    .projects-grid.timeline-view .project-card::after {
-        display: none !important;
-    }
-    
-    .projects-grid.timeline-view .project-card:nth-child(even) {
-        margin-left: 0 !important;
-    }
+
     
     .nav-container {
         flex-wrap: wrap;
@@ -276,27 +256,7 @@
         padding-left: 0;
     }
     
-    .projects-grid.timeline-view {
-        padding-left: 60px;
-    }
-    
-    .projects-grid.timeline-view .project-card:nth-child(even) {
-        margin-left: 0;
-    }
-    
-    .projects-grid.timeline-view .project-card:nth-child(odd)::after,
-    .projects-grid.timeline-view .project-card:nth-child(even)::after {
-        width: 20px;
-        height: 20px;
-        left: -42px !important;
-        right: -42px !important;
-    }
-    
-    .projects-grid.timeline-view .project-card:not(:last-child)::before {
-        left: -30px !important;
-        right: -30px !important;
-        top: 50px;
-    }
+
 
     .experience-timeline {
         padding-left: var(--spacing-md);

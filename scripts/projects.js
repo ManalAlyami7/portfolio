@@ -1,4 +1,4 @@
-// ==================== PROJECT FILTERING AND TIMELINE ====================
+// ==================== PROJECT FILTERING ====================
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Projects script loaded');
     
@@ -30,13 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show all hidden projects
                 hiddenProjects.forEach(project => {
                     project.style.display = 'flex';
-                    
-                    // Reapply animation class if in timeline view
-                    if (projectsGrid && projectsGrid.classList.contains('timeline-view')) {
-                        project.classList.remove('loaded');
-                        void project.offsetWidth; // Trigger reflow
-                        project.classList.add('loaded');
-                    }
                 });
                 
                 this.textContent = 'Show Less';
@@ -63,13 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (filter === 'all' || card.dataset.category === filter) {
                     card.classList.remove('hidden');
                     card.style.display = 'flex';
-                    
-                    // Reapply animation class if in timeline view
-                    if (projectsGrid && projectsGrid.classList.contains('timeline-view')) {
-                        card.classList.remove('loaded');
-                        void card.offsetWidth; // Trigger reflow
-                        card.classList.add('loaded');
-                    }
                 } else {
                     card.classList.add('hidden');
                     card.style.display = 'none';
@@ -77,62 +63,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-    
-    // Timeline toggle
-    const timelineToggle = document.getElementById('timeline-view');
-    
-    if (timelineToggle && projectsGrid) {
-        timelineToggle.addEventListener('change', function() {
-            if (this.checked) {
-                projectsGrid.classList.add('timeline-view');
-                // Sort projects by date
-                setTimeout(() => {
-                    sortProjectsByDate();
-                    // Trigger reflow to restart animations
-                    const cards = projectsGrid.querySelectorAll('.project-card:not(.hidden)');
-                    cards.forEach(card => {
-                        card.classList.remove('loaded');
-                        void card.offsetWidth; // Trigger reflow
-                        card.classList.add('loaded');
-                    });
-                }, 10);
-            } else {
-                projectsGrid.classList.remove('timeline-view');
-                // Remove animations when leaving timeline view
-                const cards = projectsGrid.querySelectorAll('.project-card');
-                cards.forEach(card => {
-                    card.classList.remove('loaded');
-                });
-            }
-        });
-    }
-    
-    function sortProjectsByDate() {
-        const projectsArray = Array.from(projectsGrid.querySelectorAll('.project-card:not(.hidden)'));
-        projectsArray.sort((a, b) => {
-            const dateA = new Date(a.dataset.date);
-            const dateB = new Date(b.dataset.date);
-            return dateA - dateB;
-        });
-        
-        // Re-append sorted projects
-        projectsArray.forEach(project => {
-            projectsGrid.appendChild(project);
-        });
-    }
-    
-    // Initialize timeline view if toggle is checked on page load
-    if (timelineToggle && timelineToggle.checked && projectsGrid) {
-        setTimeout(() => {
-            projectsGrid.classList.add('timeline-view');
-            sortProjectsByDate();
-            // Apply animations to visible cards
-            const visibleCards = projectsGrid.querySelectorAll('.project-card:not(.hidden)');
-            visibleCards.forEach(card => {
-                card.classList.remove('loaded');
-                void card.offsetWidth; // Trigger reflow
-                card.classList.add('loaded');
-            });
-        }, 10);
-    }
 });

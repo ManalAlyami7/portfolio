@@ -75,12 +75,7 @@
                         card.classList.remove('hidden');
                         card.style.display = 'flex';
                         
-                        // Reapply animation if in timeline view
-                        if (projectsGrid && projectsGrid.classList.contains('timeline-view')) {
-                            card.classList.remove('loaded');
-                            void card.offsetWidth;
-                            card.classList.add('loaded');
-                        }
+
                     } else {
                         card.classList.add('hidden');
                         card.style.display = 'none';
