@@ -1,15 +1,31 @@
 // ==================== MOBILE MENU IMPLEMENTATION ====================
 function initMobileMenu() {
+    console.log('📱 Initializing mobile menu...');
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     
-    if (!hamburger) return;
+    console.log('🔍 Hamburger element:', hamburger);
+    console.log('🔍 Nav links element:', navLinks);
+    
+    if (!hamburger) {
+        console.warn('❌ Hamburger button not found');
+        return;
+    }
+    
+    if (!navLinks) {
+        console.warn('❌ Nav links not found');
+        return;
+    }
+    
+    console.log('✅ Both elements found, adding event listeners');
     
     hamburger.addEventListener('click', () => {
+        console.log('🍔 Hamburger clicked!');
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', 
-            navLinks.classList.contains('active'));
+        const isActive = navLinks.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isActive);
+        console.log('🔄 Menu active state:', isActive);
     });
     
     // Close menu when clicking a link
@@ -47,6 +63,7 @@ function initMobileMenu() {
 
 // ==================== PORTFOLIO INITIALIZATION ====================
 function initializePortfolio() {
+    console.log('🚀 Initializing portfolio...');
     // Initialize mobile menu
     initMobileMenu();
     
@@ -130,5 +147,6 @@ function highlightActiveSection() {
 
 // Initialize portfolio after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🎯 DOM Content Loaded event fired');
     initializePortfolio();
 });
