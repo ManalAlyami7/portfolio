@@ -76,3 +76,19 @@
     margin-bottom: var(--spacing-md);
     color: var(--gray);
 }
+
+/* Dark mode adjustments for contact text */
+[data-theme="dark"] .text-center p {
+    color: var(--text-secondary);
+}
+
+/* Dark mode for section subtitles in contact */
+[data-theme="dark"] .section-subtitle {
+    color: var(--text-secondary);
+    opacity: 0.9;
+}
+
+/* Dark mode for regular paragraphs in contact section */
+[data-theme="dark"] #contact p:not(.section-subtitle) {
+    color: var(--text-primary);
+}
