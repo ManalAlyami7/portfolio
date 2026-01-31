@@ -1,0 +1,238 @@
+<!-- ==================== ENHANCED RESPONSIVE HTML COMPONENTS ==================== -->
+<!-- Senior Front-End Engineer Responsive Enhancement -->
+<!-- These are suggested HTML improvements to complement the CSS enhancements -->
+
+<!-- ==================== ENHANCED HEADER COMPONENT ==================== -->
+<!-- File: components/header.html (enhanced version) -->
+<header class="nav" role="banner">
+    <div class="nav-container">
+        <!-- Logo with enhanced accessibility -->
+        <div class="logo" role="banner">
+            <a href="#home" aria-label="Navigate to homepage">
+                <img src="images/logo.png" alt="Manal Alyami Logo" class="logo-img" loading="eager" width="40" height="40">
+                <span class="logo-text">Manal Alyami</span>
+            </a>
+        </div>
+        
+        <!-- Enhanced navigation with better semantic structure -->
+        <nav role="navigation" aria-label="Main navigation">
+            <!-- Hamburger button with improved accessibility -->
+            <button class="hamburger" 
+                    aria-label="Toggle navigation menu" 
+                    aria-expanded="false"
+                    aria-controls="main-menu"
+                    type="button">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+                <span class="sr-only">Menu</span>
+            </button>
+            
+            <!-- Navigation links with proper list structure -->
+            <ul class="nav-links" id="main-menu" role="menubar">
+                <li role="none">
+                    <a href="#home" role="menuitem" aria-current="page">Home</a>
+                </li>
+                <li role="none">
+                    <a href="#projects" role="menuitem">Projects</a>
+                </li>
+                <li role="none">
+                    <a href="#contact" role="menuitem">Contact</a>
+                </li>
+                <!-- Mobile-only menu items -->
+                <li role="none" class="mobile-menu-item">
+                    <a href="#about" role="menuitem">About</a>
+                </li>
+                <li role="none" class="mobile-menu-item">
+                    <a href="#experience" role="menuitem">Experience</a>
+                </li>
+                <li role="none" class="mobile-menu-item">
+                    <a href="#social-proof" role="menuitem">Testimonials</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <!-- Enhanced theme toggle with better accessibility -->
+        <div class="theme-toggle-container" role="button" tabindex="0" 
+             aria-label="Toggle dark mode" 
+             aria-pressed="false">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark mode">
+                <i id="theme-icon" class="fas fa-moon" aria-hidden="true"></i>
+                <span class="sr-only">Toggle theme</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ==================== ENHANCED PROJECT CARD STRUCTURE ==================== -->
+<!-- File: components/projects.html (enhanced project cards) -->
+<div class="project-card featured" data-category="ai" data-date="2024-08" tabindex="0" role="article" aria-labelledby="project-title-1">
+    <div class="project-timeline-dot" aria-hidden="true"></div>
+    
+    <!-- Enhanced project header with better semantics -->
+    <header class="project-header">
+        <div class="project-icon" aria-hidden="true">
+            <i class="fas fa-robot" role="img" aria-label="Robot icon"></i>
+        </div>
+        <h3 id="project-title-1">Smart Hajj AI System</h3>
+    </header>
+    
+    <!-- Enhanced project content with proper structure -->
+    <div class="project-content">
+        <p class="project-hook">Revolutionary multilingual AI system serving 2M+ annual Hajj pilgrims with 94% accuracy and sub-2s response times.</p>
+        
+        <div class="project-description">
+            <p class="project-desc">Led design and development of a multilingual AI system with intuitive conversation flows for 2M+ annual Hajj pilgrims. First place winner in a competitive AI development program. Focused on accessibility, supporting Arabic, English, and Urdu with seamless voice and text interfaces. Created intelligent routing and real-time fraud prevention with user-friendly alerts.</p>
+        </div>
+        
+        <!-- Enhanced metrics with better semantic structure -->
+        <div class="project-metrics" role="list" aria-label="Project metrics">
+            <span class="tag tag--metric-date" role="listitem">📅 Aug 2024 - Present</span>
+            <span class="tag tag--metric" data-count="94" role="listitem">⚡ 94% Accuracy</span>
+            <span class="tag tag--metric" role="listitem">⏱️ &lt;2s Response</span>
+            <span class="tag tag--metric" role="listitem">🏆 1st Place</span>
+        </div>
+        
+        <!-- Enhanced tech tags with better accessibility -->
+        <div class="project-tags" role="list" aria-label="Technologies used">
+            <span class="tag tag--tech" role="listitem">Python</span>
+            <span class="tag tag--tech" role="listitem">LangGraph</span>
+            <span class="tag tag--tech" role="listitem">OpenAI API</span>
+            <span class="tag tag--tech" role="listitem">Streamlit</span>
+            <span class="tag tag--tech" role="listitem">SQLite</span>
+            <span class="tag tag--tech" role="listitem">Supabase</span>
+            <span class="tag tag--tech" role="listitem">Multilingual AI</span>
+        </div>
+        
+        <!-- Enhanced action buttons with better semantics -->
+        <div class="project-actions">
+            <a href="https://github.com/ManalAlyami7/Hajj" 
+               class="btn btn-case-study" 
+               role="button"
+               aria-label="View detailed case study for Smart Hajj AI System">
+                View Case Study 
+                <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== ENHANCED CONTACT SECTION ==================== -->
+<!-- File: components/contact.html (enhanced version) -->
+<section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+        <div class="contact-content">
+            <header>
+                <h2 id="contact-heading">Let's Connect</h2>
+                <p class="section-subtitle">Opportunities to collaborate and create impact</p>
+            </header>
+            
+            <!-- Enhanced contact message with proper semantics -->
+            <div class="contact-message" role="complementary">
+                <p>
+                    I'm actively seeking opportunities in Data Science and AI Engineering where I can build systems that combine technical excellence with exceptional user experience. Let's create solutions that users actually love.
+                </p>
+            </div>
+            
+            <!-- Enhanced contact info with better structure -->
+            <div class="contact-info" role="list">
+                <div class="contact-item" role="listitem">
+                    <div class="contact-icon" aria-hidden="true">
+                        <i class="fas fa-envelope" role="img" aria-label="Email icon"></i>
+                    </div>
+                    <a href="mailto:Manalalyami7@gmail.com" 
+                       rel="noopener noreferrer" 
+                       aria-label="Send email to Manal Alyami">
+                        Manalalyami7@gmail.com
+                    </a>
+                </div>
+                
+                <div class="contact-item" role="listitem">
+                    <div class="contact-icon" aria-hidden="true">
+                        <i class="fab fa-linkedin" role="img" aria-label="LinkedIn icon"></i>
+                    </div>
+                    <a href="https://linkedin.com/in/manal-alyami" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="Visit Manal Alyami's LinkedIn profile">
+                        LinkedIn Profile
+                    </a>
+                </div>
+                
+                <div class="contact-item" role="listitem">
+                    <div class="contact-icon" aria-hidden="true">
+                        <i class="fab fa-github" role="img" aria-label="GitHub icon"></i>
+                    </div>
+                    <a href="https://github.com/ManalAlyami7" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="Visit Manal Alyami's GitHub profile">
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Enhanced contact actions with better semantics -->
+            <div class="contact-actions" role="toolbar" aria-label="Contact options">
+                <a href="#social-proof" 
+                   class="btn btn-secondary" 
+                   role="button">
+                    View Social Proof
+                </a>
+                <a href="mailto:Manalalyami7@gmail.com" 
+                   class="btn btn-primary" 
+                   role="button"
+                   aria-label="Send a direct message">
+                    Send Message
+                </a>
+                <a href="documents/Manal Salem Alyami (AI-GenAi Engineer).pdf" 
+                   download 
+                   class="btn btn-resume"
+                   role="button"
+                   aria-label="Download resume as PDF">
+                    <i class="fas fa-download" aria-hidden="true"></i>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== REQUIRED HTML ADDITIONS ==================== -->
+<!-- These should be added to existing HTML files -->
+
+<!-- Skip to content link for accessibility (add to index.html head) -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Main content wrapper (add to index.html main element) -->
+<main id="main-content" tabindex="-1">
+
+<!-- Screen reader only text class (add to global CSS) -->
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+<!-- Enhanced focus styles (add to global CSS) -->
+:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Mobile menu item hiding (add to responsive CSS) */
+@media (min-width: 769px) {
+    .mobile-menu-item {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-item {
+        display: block;
+    }
+}
