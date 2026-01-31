@@ -83,14 +83,19 @@
         e.preventDefault();
     });
     
-    // Handle fetch errors (for component loading)
-    const originalFetch = window.fetch;
-    window.fetch = function(...args) {
-        return originalFetch.apply(this, args).catch(error => {
-            console.error('Fetch error:', error);
-            // Return a resolved promise with empty content to prevent breaking
-            return Promise.resolve(new Response('', { status: 200 }));
-        });
+    // Safe fetch wrapper instead of overriding global fetch
+    window.safeFetch = async function(url, options) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return response;
+        } catch (error) {
+            console.error('Fetch failed:', url, error);
+            // Return null instead of fake success
+            return null;
+        }
     };
     
 })();

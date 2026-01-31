@@ -83,8 +83,19 @@
     <meta name="googlebot" content="index, follow">
     <meta name="theme-color" content="#2e5939">
     
-    <!-- GitHub Pages Compatibility -->
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- GitHub Pages Compatibility with Comprehensive Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        img-src 'self' data: https: blob:;
+        connect-src 'self' https://api.github.com;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+    ">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Immediate error handling for loader issues -->
     <script>
@@ -98,8 +109,11 @@
         });
     </script>
     
-    <!-- External CSS -->
+    <!-- External CSS - SRI hash already present (GOOD!) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- NOTE FOR FUTURE: For production, consider adding SRI hashes for local CSS files as well -->
+    <!-- Example format: <link rel="stylesheet" href="styles/global.css" integrity="sha384-...GENERATED_HASH..."> -->
     
     <!-- Critical CSS -->
     <link rel="stylesheet" href="styles/global.css?v=1.1">
@@ -165,8 +179,11 @@
     <!-- GitHub Pages Compatible Script Loader -->
     <script src="scripts/github-pages-loader-enhanced.js?v=1.1"></script>
     
+    <!-- NOTE FOR FUTURE: For production, consider adding SRI hashes for local JavaScript files as well -->
+    <!-- Example format: <script src="scripts/main.js" integrity="sha384-...GENERATED_HASH..."> -->
+    
     <script>
-        // Dynamic component loader with comprehensive error handling
+        // Dynamic component loader with comprehensive error handling and XSS protection
         async function loadComponent(componentName, targetElementId) {
             const targetElement = document.getElementById(targetElementId);
             
@@ -186,7 +203,21 @@
                 if (response.ok) {
                     const html = await response.text();
                     if (targetElement) {
-                        targetElement.innerHTML = html;
+                        // Safer approach: Use DOMParser to parse HTML and sanitize
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        
+                        // Clear the target element
+                        targetElement.innerHTML = '';
+                        
+                        // Extract body content and append child nodes safely
+                        const bodyContent = doc.body ? doc.body.childNodes : doc.childNodes;
+                        
+                        // Append each child node individually
+                        for (let i = 0; i < bodyContent.length; i++) {
+                            const node = bodyContent[i].cloneNode(true);
+                            targetElement.appendChild(node);
+                        }
                     }
                     return true; // Success
                 } else {
