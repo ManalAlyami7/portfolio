@@ -14,6 +14,13 @@
     
     // Load scripts sequentially to ensure dependencies
     function loadScript(scriptInfo, callback) {
+        // Add null check to prevent errors with undefined scriptInfo
+        if (!scriptInfo || !scriptInfo.src) {
+            console.warn('⚠️ Invalid scriptInfo provided, skipping');
+            if (callback) callback();
+            return;
+        }
+        
         const script = document.createElement('script');
         script.src = scriptInfo.src;
         
@@ -44,8 +51,16 @@
     
     // Load scripts in order
     function loadScriptsSequentially(index = 0) {
-        if (index >= scripts.length) {
+        // Validate index bounds
+        if (index >= scripts.length || index < 0) {
             console.log('✅ All scripts loaded successfully');
+            return;
+        }
+        
+        const scriptInfo = scripts[index];
+        if (!scriptInfo) {
+            console.warn(`⚠️ No script info at index ${index}, skipping`);
+            loadScriptsSequentially(index + 1);
             return;
         }
         
