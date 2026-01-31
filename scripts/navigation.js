@@ -19,6 +19,17 @@ function initMobileMenu() {
     
     console.log('✅ Both elements found, adding event listeners');
     
+    // Test: Force menu active for debugging
+    console.log('🧪 Testing menu visibility...');
+    navLinks.classList.add('active');
+    hamburger.classList.add('active');
+    setTimeout(() => {
+        console.log('🔍 Forced active state - Computed display:', getComputedStyle(navLinks).display);
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+        console.log('🔄 Menu reset to inactive state');
+    }, 1000);
+    
     hamburger.addEventListener('click', () => {
         console.log('🍔 Hamburger clicked!');
         navLinks.classList.toggle('active');
@@ -26,6 +37,12 @@ function initMobileMenu() {
         const isActive = navLinks.classList.contains('active');
         hamburger.setAttribute('aria-expanded', isActive);
         console.log('🔄 Menu active state:', isActive);
+        
+        // Debug CSS application
+        console.log('🔍 Nav links classes:', navLinks.className);
+        console.log('🔍 Computed display:', getComputedStyle(navLinks).display);
+        console.log('🔍 Window width:', window.innerWidth);
+        console.log('🔍 Is in mobile breakpoint:', window.innerWidth <= 768);
     });
     
     // Close menu when clicking a link
