@@ -171,6 +171,14 @@
     width: 100%;
 }
 
+.social-proof-content h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: var(--spacing-xxl) 0 var(--spacing-xl) 0;
+    font-weight: 700;
+}
+
 .recommendation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -214,7 +222,11 @@
     transform: scaleX(1);
 }
 
-.recommendation-card h4 {
+.recommendation-header {
+    margin-bottom: var(--spacing-md);
+}
+
+.recommendation-header h4 {
     color: var(--text-primary);
     margin-bottom: var(--spacing-xs);
     font-size: 1.4rem;
@@ -222,10 +234,24 @@
     letter-spacing: -0.02em;
 }
 
-.recommendation-card p {
+.recommendation-header p {
     color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    margin: var(--spacing-xs) 0;
+    line-height: 1.5;
+}
+
+/* For recommendation text content */
+.recommendation-text,
+.recommendation-content {
+    margin: var(--spacing-md) 0;
+}
+
+.recommendation-text p,
+.recommendation-content p {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    margin-bottom: var(--spacing-md);
     line-height: 1.7;
 }
 
@@ -238,6 +264,12 @@
     color: var(--text-primary);
     font-size: 1.05rem;
     margin: var(--spacing-md) 0;
+}
+
+/* Expanded state for truncated text */
+.truncated-text.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
 }
 
 /* See more button */
@@ -279,7 +311,7 @@
 }
 
 .recommendation-meta {
-    border-top: 1px solid var(--light);
+    border-top: 1px solid var(--border-color);
     padding-top: var(--spacing-md);
     margin-top: var(--spacing-md);
 }
@@ -290,69 +322,6 @@
     margin: 0;
     font-weight: 500;
     padding: var(--spacing-md) 0;
-}
-
-.recommendation-header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent-bright));
-    color: white;
-    padding: var(--spacing-xl);
-    text-align: center;
-    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.recommendation-header::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s;
-}
-
-.recommendation-card:hover .recommendation-header::after {
-    left: 100%;
-}
-
-.recommendation-header h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-xs);
-    color: white;
-}
-
-.recommendation-subtitle {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    margin: 0;
-}
-
-.recommendation-content {
-    padding: var(--spacing-xl);
-    background: var(--card-bg);
-}
-
-.recommendation-content p {
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.8;
-    font-size: 1.05rem;
-    position: relative;
-    padding-left: 20px;
-}
-
-.recommendation-content p::before {
-    content: '"';
-    position: absolute;
-    left: 0;
-    top: -10px;
-    font-size: 3rem;
-    color: var(--accent-bright);
-    opacity: 0.3;
-    font-family: Georgia, serif;
 }
 
 .recommendation-actions {
@@ -372,7 +341,7 @@
 }
 
 .recommendation-note {
-    background: var(--light);
+    background: var(--bg-tertiary);
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-md);
     margin-top: var(--spacing-xl);
@@ -382,7 +351,7 @@
 
 .recommendation-note p {
     margin: 0;
-    color: var(--dark);
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -397,26 +366,26 @@
 }
 
 .document-card {
-    background: var(--white);
+    background: var(--card-bg);
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-md);
-    border-left: 4px solid var(--accent);
-    transition: var(--transition-normal);
+    box-shadow: 0 8px 20px var(--shadow-color);
+    border-left: 4px solid var(--accent-bright);
+    transition: all 0.3s ease;
 }
 
 .document-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 30px var(--shadow-color);
 }
 
 .document-card h4 {
-    margin: 0;
-    color: var(--dark);
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-primary);
 }
 
 .document-card p {
-    color: var(--gray);
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
 }

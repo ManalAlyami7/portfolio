@@ -289,9 +289,11 @@
                     const previewQuote = card.querySelector('.preview-quote');
                     const fullQuote = card.querySelector('.full-quote');
                     
-                    if (fullQuote.style.display === 'none') {
+                    if (fullQuote && fullQuote.style.display === 'none') {
                         // Expand the quote
-                        previewQuote.style.display = 'none';
+                        if (previewQuote) {
+                            previewQuote.style.display = 'none';
+                        }
                         fullQuote.style.display = 'block';
                         this.textContent = 'Show less';
                     } else {
