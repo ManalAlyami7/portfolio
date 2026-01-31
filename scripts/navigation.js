@@ -19,31 +19,112 @@ function initMobileMenu() {
     
     console.log('✅ Both elements found, adding event listeners');
     
-    // Test: Force menu active for debugging
-    console.log('🧪 Testing menu visibility...');
-    navLinks.classList.add('active');
-    hamburger.classList.add('active');
-    setTimeout(() => {
-        console.log('🔍 Forced active state - Computed display:', getComputedStyle(navLinks).display);
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-        console.log('🔄 Menu reset to inactive state');
-    }, 1000);
+    // Enhanced mobile menu functionality
+    let isMenuOpen = false;
     
-    hamburger.addEventListener('click', () => {
-        console.log('🍔 Hamburger clicked!');
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        const isActive = navLinks.classList.contains('active');
-        hamburger.setAttribute('aria-expanded', isActive);
-        console.log('🔄 Menu active state:', isActive);
+    // Improved click handler with better state management
+    hamburger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Debug CSS application
+        console.log('🍔 Hamburger clicked!');
+        isMenuOpen = !isMenuOpen;
+        
+        // Toggle classes
+        navLinks.classList.toggle('active', isMenuOpen);
+        hamburger.classList.toggle('active', isMenuOpen);
+        
+        // Update ARIA attributes
+        hamburger.setAttribute('aria-expanded', isMenuOpen);
+        
+        // Enhanced accessibility
+        if (isMenuOpen) {
+            navLinks.setAttribute('aria-hidden', 'false');
+            // Focus first link for keyboard navigation
+            setTimeout(() => {
+                const firstLink = navLinks.querySelector('a');
+                if (firstLink) firstLink.focus();
+            }, 100);
+        } else {
+            navLinks.setAttribute('aria-hidden', 'true');
+            hamburger.focus();
+        }
+        
+        console.log('🔄 Menu active state:', isMenuOpen);
         console.log('🔍 Nav links classes:', navLinks.className);
         console.log('🔍 Computed display:', getComputedStyle(navLinks).display);
         console.log('🔍 Window width:', window.innerWidth);
         console.log('🔍 Is in mobile breakpoint:', window.innerWidth <= 768);
     });
+    
+    // Enhanced close menu when clicking a link
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                navLinks.setAttribute('aria-hidden', 'true');
+                hamburger.focus();
+            });
+        });
+    }
+    
+    // Enhanced close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isMenuOpen && 
+            !hamburger.contains(e.target) && 
+            !navLinks.contains(e.target)) {
+            isMenuOpen = false;
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
+        }
+    });
+    
+    // Enhanced keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            isMenuOpen = false;
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
+            hamburger.focus();
+        }
+        
+        // Tab navigation within menu
+        if (isMenuOpen && e.key === 'Tab' && navLinks.contains(document.activeElement)) {
+            const focusableElements = navLinks.querySelectorAll('a');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            // Close menu when switching to desktop
+            isMenuOpen = false;
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
+        }
+    });
+    
+    // Initialize ARIA attributes
+    navLinks.setAttribute('aria-hidden', 'true');
     
     // Close menu when clicking a link
     if (navLinks) {
