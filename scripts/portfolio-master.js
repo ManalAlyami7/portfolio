@@ -38,11 +38,6 @@
         
         const elements = checkElements();
         
-        // Initialize dark mode if elements exist
-        if (elements.themeToggle && elements.themeIcon) {
-            initializeDarkMode(elements.themeToggle, elements.themeIcon);
-        }
-        
         // Initialize projects functionality if elements exist
         if (elements.filterButtons.length > 0 && elements.projectCards.length > 0) {
             initializeProjects(elements.filterButtons, elements.projectCards, elements.projectsGrid);
@@ -59,64 +54,6 @@
         }
         
         console.log('✅ All portfolio functionality initialized');
-    }
-    
-    // Dark Mode Initialization
-    function initializeDarkMode(themeToggle, themeIcon) {
-        console.log('🌙 Initializing Dark Mode...');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Apply initial theme
-        const initialTheme = (savedTheme === 'dark' || (savedTheme === 'auto' && systemPrefersDark)) ? 'dark' : 'light';
-        applyTheme(initialTheme);
-        
-        // Add event listener
-        themeToggle.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            // Add visual feedback
-            this.style.transform = 'rotate(30deg) scale(1.1)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 300);
-            
-            console.log('🌙 Theme toggled to:', newTheme);
-        });
-        
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (localStorage.getItem('theme') === 'auto') {
-                applyTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-        
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            
-            if (themeIcon) {
-                if (theme === 'dark') {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                    themeIcon.title = 'Switch to light mode';
-                } else {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                    themeIcon.title = 'Switch to dark mode';
-                }
-            }
-            
-            // Dispatch custom event
-            window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
-        }
-        
-        console.log('✅ Dark Mode initialized');
     }
     
     // Projects Initialization
