@@ -557,3 +557,24 @@
         opacity: 0.2;
     }
 }
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+    .recommendation-content {
+        background: rgba(255, 255, 255, 0.05);
+        border-left-color: var(--accent-bright);
+    }
+    
+    .recommendation-content:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+    
+    .recommendation-content blockquote {
+        background: rgba(59, 130, 246, 0.1);
+        border-left-color: var(--accent-bright);
+    }
+    
+    .recommendation-content blockquote p {
+        color: var(--text-secondary-dark);
+    }
+}
