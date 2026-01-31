@@ -298,8 +298,12 @@
                         this.textContent = 'Show less';
                     } else {
                         // Collapse the quote
-                        fullQuote.style.display = 'none';
-                        previewQuote.style.display = 'block';
+                        if (fullQuote) {
+                            fullQuote.style.display = 'none';
+                        }
+                        if (previewQuote) {
+                            previewQuote.style.display = 'block';
+                        }
                         this.textContent = 'Read more';
                     }
                 });
