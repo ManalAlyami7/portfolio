@@ -1,4 +1,4 @@
-# Manal Alyami - Professional Portfolio
+# Manal Alyami - Professional Portfolio ✅ Updated
 
 A modern, responsive portfolio website showcasing expertise in Data Science and AI Engineering with exceptional UX design.
 
