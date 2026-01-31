@@ -15,6 +15,52 @@
     overflow: hidden;
 }
 
+/* Dark mode compatibility for hero section */
+[data-theme="dark"] .hero-banner {
+    background: linear-gradient(135deg, #1e3d28 0%, #0f2419 100%), url('../images/banner.png');
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+/* Ensure text remains visible in dark mode */
+[data-theme="dark"] .hero-main-text {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .hero-sub-text {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .typed-title {
+    color: #ffd863; /* Keep the gold accent color */
+}
+
+[data-theme="dark"] .trust-badge {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .badge {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure buttons work well in dark mode */
+[data-theme="dark"] .btn-primary {
+    background: var(--accent-bright);
+    color: white;
+}
+
+[data-theme="dark"] .btn-secondary {
+    color: var(--accent-bright);
+    border: 2px solid var(--accent-bright);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: var(--accent-bright);
+    color: white;
+}
+
 .hero-container {
     max-width: 1200px;
     width: 100%;

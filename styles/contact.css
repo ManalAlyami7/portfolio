@@ -42,8 +42,9 @@
 }
 
 .contact-icon:hover {
-    transform: translateY(-5px); /* Enhanced UX: Lift effect */
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px) rotate(5deg); /* Enhanced UX: Lift effect with rotation */
+    background: linear-gradient(135deg, var(--accent-bright), var(--primary)); /* Change gradient on hover */
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); /* Blue glow effect */
 }
 
 .contact-item a {

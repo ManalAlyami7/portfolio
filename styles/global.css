@@ -701,6 +701,64 @@ html {
     letter-spacing: -0.03em;
 }
 
+/* Unified Button System */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    min-height: 44px;  /* WCAG minimum touch target */
+    border-radius: var(--border-radius-lg);
+    font-weight: 600;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Button variants */
+.btn-primary {
+    background: var(--accent-bright);
+    color: white;
+    border: 2px solid var(--accent-bright);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--accent-bright);
+    color: var(--accent-bright);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+}
+
+.btn-outline:hover {
+    background: var(--accent-bright);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-text {
+    background: transparent;
+    color: var(--accent-bright);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+}
+
 /* High-contrast button text optimization */
 .btn-case-study, .project-actions .btn-outline {
     font-family: "Inter", system-ui, -apple-system, sans-serif;
