@@ -83,6 +83,12 @@
     // Load scripts in order with enhanced validation
     function loadScriptsSequentially(index = 0) {
         try {
+            // Handle case where event object is passed instead of index
+            if (typeof index !== 'number' || index < 0) {
+                console.warn('⚠️ Invalid index passed to loadScriptsSequentially, using default index 0');
+                index = 0;
+            }
+            
             // Validate bounds and array integrity
             if (!Array.isArray(scripts) || index >= scripts.length || index < 0) {
                 console.log('✅ All scripts loaded successfully');
@@ -110,13 +116,15 @@
     
     // Wait for DOM to be ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function(event) {
             console.log('DOM loaded, starting script loading...');
-            loadScriptsSequentially();
+            // Use setTimeout to ensure proper execution context
+            setTimeout(() => loadScriptsSequentially(), 0);
         });
     } else {
         console.log('DOM already ready, starting script loading...');
-        loadScriptsSequentially();
+        // Use setTimeout to ensure proper execution context
+        setTimeout(() => loadScriptsSequentially(), 0);
     }
     
     // Enhanced global error handling
