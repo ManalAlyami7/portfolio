@@ -136,10 +136,10 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--primary-dark);
-    border: 1px solid var(--secondary);
+    border: 2px solid var(--secondary); /* Increased border width for better contrast */
     transition: all var(--transition-normal);
     /* Enhanced UX: Visual impact metrics */
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md); /* Increased shadow for better definition */
 }
 
 .metric-badge:hover {
@@ -173,16 +173,17 @@
 }
 
 .tag {
-    background: rgba(0,0,0,0.04);
+    background: rgba(0,0,0,0.25); /* Increased opacity for better contrast */
     padding: 0.6rem 1.2rem;
     border-radius: 999px;
     font-size: 0.9rem;
-    color: var(--primary-dark);
+    color: var(--text-primary); /* Better text contrast */
     font-weight: 600;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--border-color); /* Better border contrast */
     transition: var(--transition-normal);
     display: inline-block;
     margin: 0.3rem;
+    box-shadow: var(--shadow-sm); /* Add shadow for better definition */
 }
 
 .tag:hover {
@@ -192,21 +193,21 @@
 
 /* Tag variations for different purposes */
 .tag--metric {
-    background: rgba(74, 107, 94, 0.1);
-    color: var(--primary);
-    border: 1px solid var(--primary);
+    background: rgba(74, 107, 94, 0.2); /* Increased opacity for better contrast */
+    color: var(--text-primary); /* Better text contrast */
+    border: 1px solid var(--border-color); /* Better border contrast */
 }
 
 .tag--metric-date {
-    background: rgba(139, 158, 148, 0.15);
-    color: var(--secondary);
-    border: 1px solid var(--secondary);
+    background: rgba(139, 158, 148, 0.25); /* Increased opacity for better contrast */
+    color: var(--text-primary); /* Better text contrast */
+    border: 1px solid var(--border-color); /* Better border contrast */
 }
 
 .tag--metric-award {
-    background: rgba(196, 165, 123, 0.15);
-    color: var(--accent);
-    border: 1px solid var(--accent);
+    background: rgba(196, 165, 123, 0.25); /* Increased opacity for better contrast */
+    color: var(--text-primary); /* Better text contrast */
+    border: 1px solid var(--border-color); /* Better border contrast */
 }
 
 .tag--metric {
@@ -216,10 +217,10 @@
 }
 
 .tag--tech {
-    background: rgba(0,0,0,0.04);
-    color: var(--primary);
+    background: rgba(0,0,0,0.25); /* Increased opacity for better contrast */
+    color: var(--text-primary); /* Better text contrast */
     font-weight: 600;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--border-color); /* Better border contrast */
     padding: 0.6rem 1.1rem;
     font-size: 0.85rem;
     margin: 0.3rem;

@@ -210,7 +210,8 @@ h3 {
 }
 
 .section-subtitle {
-    opacity: 0.8;
+    opacity: 1.0;    /* Increased from 0.8 for better contrast */
+    color: var(--text-primary); /* Explicit color for better contrast */
     margin-bottom: var(--spacing-xl);
     text-align: center;
     font-size: clamp(1.1rem, 2.5vw, 1.3rem);
@@ -1297,6 +1298,8 @@ html {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Add border for better contrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for better definition */
 }
 
 /* Footer Styles */

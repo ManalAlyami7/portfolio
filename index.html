@@ -257,10 +257,8 @@
             
             try {
                 // Phase 1: Load critical above-the-fold components first (immediate render)
-                await Promise.all([
-                    loadComponent('header', 'header-component'),
-                    loadComponent('hero', 'hero-component')
-                ]);
+                const headerResult = await loadComponent('header', 'header-component');
+                const heroResult = await loadComponent('hero', 'hero-component');
                 
                 // Hide loading indicator after critical components load
                 if (loadingIndicator) {
@@ -271,54 +269,55 @@
                 }
                 
                 // Phase 2: Load essential content components in parallel
-                const essentialComponents = Promise.all([
-                    loadComponent('about', 'about-component'),
-                    loadComponent('projects', 'projects-component')
-                ]);
+                const aboutResult = loadComponent('about', 'about-component');
+                const projectsResult = loadComponent('projects', 'projects-component');
                 
-                // Phase 3: Load secondary components with lower priority (fire and forget)
-                const secondaryComponents = Promise.allSettled([
-                    loadComponent('experience', 'experience-component'),
-                    loadComponent('social-proof', 'social-proof-component'),
-                    loadComponent('contact', 'contact-component'),
-                    loadComponent('footer', 'footer-component')
-                ]);
+                // Phase 3: Load secondary components with lower priority
+                const experienceResult = loadComponent('experience', 'experience-component');
+                const socialProofResult = loadComponent('social-proof', 'social-proof-component');
+                const contactResult = loadComponent('contact', 'contact-component');
+                const footerResult = loadComponent('footer', 'footer-component');
+                
+                // Wait for essential components to load
+                await Promise.all([aboutResult, projectsResult]);
                 
                 // Initialize functionality after essential components are loaded
-                essentialComponents.then(() => {
-                    setTimeout(() => {
-                        // Initialize social proof expand functionality
-                        initSocialProofExpand();
-                        
-                        // Initialize show more projects functionality
-                        initShowMoreProjects();
-                        
-                        // Initialize dark mode functionality
-                        initDarkMode();
-                        
-                        // Set current year in footer
-                        const currentYearElement = document.getElementById('current-year');
-                        if (currentYearElement) {
-                            currentYearElement.textContent = new Date().getFullYear();
-                        }
-                        
-                        // Set update date in footer
-                        const updateDateElement = document.getElementById('update-date');
-                        if (updateDateElement) {
-                            const today = new Date();
-                            const formattedDate = today.toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
-                            });
-                            updateDateElement.textContent = formattedDate;
-                        }
-                    }, 100);
-                });
+                setTimeout(() => {
+                    // Initialize social proof expand functionality
+                    initSocialProofExpand();
+                    
+                    // Initialize show more projects functionality
+                    initShowMoreProjects();
+                    
+                    // Initialize dark mode functionality
+                    initDarkMode();
+                    
+                    // Set current year in footer
+                    const currentYearElement = document.getElementById('current-year');
+                    if (currentYearElement) {
+                        currentYearElement.textContent = new Date().getFullYear();
+                    }
+                    
+                    // Set update date in footer
+                    const updateDateElement = document.getElementById('update-date');
+                    if (updateDateElement) {
+                        const today = new Date();
+                        const formattedDate = today.toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+                        updateDateElement.textContent = formattedDate;
+                    }
+                }, 100);
                 
-                // Handle any loading errors gracefully
-                secondaryComponents.catch(error => {
-                    console.warn('Non-critical component loading failed:', error);
+                // Load secondary components and handle errors gracefully
+                Promise.allSettled([experienceResult, socialProofResult, contactResult, footerResult]).then(results => {
+                    results.forEach((result, index) => {
+                        if (result.status === 'rejected') {
+                            console.warn(`Component load failed - Index ${index}:`, result.reason);
+                        }
+                    });
                 });
                 
             } catch (error) {
@@ -326,6 +325,18 @@
                 // Hide loading indicator even on error
                 if (loadingIndicator) {
                     loadingIndicator.style.display = 'none';
+                }
+                
+                // Show user-friendly error message
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.innerHTML = `
+                        <div class="critical-error-state" style="padding: 2rem; text-align: center;">
+                            <h2>Something went wrong</h2>
+                            <p>We couldn't load the content for this page. Please refresh to try again.</p>
+                            <button onclick="location.reload()" class="btn btn-primary">Refresh Page</button>
+                        </div>
+                    `;
                 }
             }
         });

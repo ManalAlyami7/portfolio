@@ -6,7 +6,6 @@
     const scripts = [
         { src: 'scripts/utils.js', defer: false },
         { src: 'scripts/navigation.js', defer: false },
-        { src: 'scripts/portfolio-master.js', defer: true },
         { src: 'scripts/animations.js', defer: true },
         { src: 'scripts/micro-interactions.js', defer: true },
         { src: 'scripts/social-proof.js', defer: true }
