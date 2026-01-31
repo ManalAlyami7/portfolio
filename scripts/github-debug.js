@@ -20,30 +20,7 @@
         console.table(checks);
         
         // Add visual indicator
-        const debugIndicator = document.createElement('div');
-        debugIndicator.id = 'github-pages-debug';
-        debugIndicator.style.cssText = `
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #2e5939;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 12px;
-            z-index: 9999;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        `;
-        debugIndicator.textContent = 'GitHub Pages: Active';
-        document.body.appendChild(debugIndicator);
-        
-        // Remove indicator after 5 seconds
-        setTimeout(() => {
-            debugIndicator.style.opacity = '0';
-            debugIndicator.style.transition = 'opacity 0.5s';
-            setTimeout(() => debugIndicator.remove(), 500);
-        }, 5000);
+       
     }
     
     // Enhanced error reporting
