@@ -39,7 +39,14 @@
             <div class="hero-visual">
                 <div class="profile-container">
                     <div class="profile-image">
-                        <img src="images/logo.png" alt="Manal Alyami" class="profile-img" onerror="this.style.display='none';">
+                        <img src="images/logo.png" 
+                             srcset="images/logo-1x.png 1x, images/logo-2x.png 2x"
+                             alt="Manal Alyami" 
+                             class="profile-img" 
+                             loading="lazy"
+                             width="120"
+                             height="120"
+                             onerror="this.style.display='none';">
                         <div class="image-overlay"></div>
                     </div>
                     <div class="floating-elements">

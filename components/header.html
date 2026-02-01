@@ -3,7 +3,14 @@
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
             <div class="logo-container">
-                <img src="images/logo.png" alt="Manal Alyami Logo" class="logo-img" onerror="this.style.display='none';">
+                <img src="images/logo.png" 
+                     srcset="images/logo-1x.png 1x, images/logo-2x.png 2x"
+                     alt="Manal Alyami Logo" 
+                     class="logo-img" 
+                     loading="lazy"
+                     width="40"
+                     height="40"
+                     onerror="this.style.display='none';">
                 <div class="logo-text">Manal Alyami</div>
             </div>
             <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">

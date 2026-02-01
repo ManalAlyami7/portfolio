@@ -1,0 +1,95 @@
+/* ==================== CONTACT SECTION ==================== */
+.contact-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xxl) 0;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xxl);
+    padding: 0 var(--spacing-md);
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    /* Enhanced UX: Dense layout */
+    border: 1px solid var(--light);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    transition: var(--transition-fast);
+}
+
+.contact-icon:hover {
+    transform: translateY(-5px) rotate(5deg); /* Enhanced UX: Lift effect with rotation */
+    background: linear-gradient(135deg, var(--accent-bright), var(--primary)); /* Change gradient on hover */
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); /* Blue glow effect */
+}
+
+.contact-item a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    font-weight: 600;
+}
+
+.contact-item a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.contact-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
+    padding: var(--spacing-lg) 0;
+}
+
+.text-center {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.text-center p {
+    margin-bottom: var(--spacing-md);
+    color: var(--gray);
+}
+
+/* Dark mode adjustments for contact text */
+[data-theme="dark"] .text-center p {
+    color: var(--text-secondary);
+}
+
+/* Dark mode for section subtitles in contact */
+[data-theme="dark"] .section-subtitle {
+    color: var(--text-secondary);
+    opacity: 0.9;
+}
+
+/* Dark mode for regular paragraphs in contact section */
+[data-theme="dark"] #contact p:not(.section-subtitle) {
+    color: var(--text-primary);
+}

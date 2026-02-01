@@ -1,0 +1,539 @@
+/* ==================== ENHANCED RESPONSIVE DESIGN ==================== */
+/* Senior Front-End Engineer Responsive Enhancement */
+/* Targets: Mobile (≤480px), Tablet (481px-1024px), Desktop (≥1025px) */
+
+/* ==================== BASE RESPONSIVE IMPROVEMENTS ==================== */
+
+/* Ensure proper box-sizing and prevent overflow */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ==================== DESKTOP-FIRST APPROACH (≥1025px) ==================== */
+/* Default styles for large screens - no media query needed */
+
+/* ==================== LARGE TABLET/LAPTOP (1025px - 1200px) ==================== */
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .container {
+        max-width: 1000px;
+        padding: 0 1.5rem;
+    }
+    
+    /* Slightly reduce hero text size for better balance */
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+    
+    /* Optimize project grid for medium screens */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    /* Adjust experience timeline spacing */
+    .experience-timeline {
+        padding-left: 3rem;
+    }
+}
+
+/* ==================== TABLET LANDSCAPE (769px - 1024px) ==================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+    /* Enhanced container for tablet */
+    .container {
+        padding: 0 2rem;
+    }
+    
+    /* Improved hero section layout */
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    
+    /* Tablet-optimized navigation */
+    .nav-links {
+        gap: 1.5rem;
+    }
+    
+    /* Two-column project layout */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    /* Contact info in two columns */
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    /* Experience section improvements */
+    .experience-timeline {
+        padding-left: 2.5rem;
+    }
+    
+    /* Enhanced typography scaling */
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.2rem; }
+    .section-subtitle { font-size: 1.2rem; }
+    
+    /* Better button sizing */
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 1rem;
+    }
+}
+
+/* ==================== TABLET PORTRAIT (481px - 768px) ==================== */
+@media (max-width: 768px) and (min-width: 481px) {
+    /* Mobile-optimized container */
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    /* Stack hero content vertically */
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+    
+    .hero-text {
+        padding-right: 0;
+    }
+    
+    /* Enhanced mobile navigation */
+    .nav {
+        padding: 1rem 1.5rem;
+        position: relative;
+    }
+    
+    /* Show hamburger menu */
+    .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        min-width: 48px; /* WCAG minimum */
+        font-size: 1.3rem;
+        z-index: 1001;
+    }
+    
+    /* Hide desktop navigation links by default */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--card-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-top: 2px solid var(--border-color);
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    /* Enhanced mobile menu items */
+    .nav-links a {
+        padding: 1.2rem 2rem;
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        min-height: 48px; /* WCAG compliance */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+        background-color: var(--bg-tertiary);
+        transform: translateY(-2px);
+    }
+    
+    /* Single column projects */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Stacked contact info */
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Mobile typography */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    .section-subtitle { font-size: 1.1rem; }
+    
+    /* Stacked buttons */
+    .hero-buttons,
+    .contact-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        padding: 1rem 2rem;
+        font-size: 1.05rem;
+        min-height: 48px; /* WCAG minimum touch target */
+    }
+    
+    /* Experience timeline mobile */
+    .experience-timeline {
+        padding-left: 1.5rem;
+    }
+    
+    /* Social proof badges */
+    .social-proof-badges {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+    
+    .badge {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+        min-width: 130px;
+    }
+    
+    /* Animation for mobile menu */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ==================== LARGE MOBILE (361px - 480px) ==================== */
+@media (max-width: 480px) and (min-width: 361px) {
+    /* Compact container */
+    .container {
+        padding: 0 1rem;
+    }
+    
+    /* Enhanced small mobile navigation */
+    .nav {
+        padding: 0.8rem 1rem;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+    
+    /* Hero section optimizations */
+    .hero-banner {
+        padding: 4rem 1rem 2.5rem;
+    }
+    
+    .hero-content {
+        gap: 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-main-text {
+        font-size: 1.15rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-sub-text {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Compact typography */
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .section-subtitle { 
+        font-size: 1rem; 
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+    }
+    
+    /* Ultra-compact social proof badges */
+    .social-proof-badges {
+        gap: 0.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .badge {
+        padding: 0.5rem 0.9rem;
+        font-size: 0.8rem;
+        min-width: 110px;
+    }
+    
+    /* Touch-optimized buttons */
+    .btn {
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+        min-height: 44px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Section spacing */
+    section {
+        padding: 3rem 0;
+    }
+    
+    /* Project cards compact */
+    .project-card {
+        padding: 1.5rem;
+    }
+    
+    .project-title {
+        font-size: 1.3rem;
+    }
+    
+    /* Filter buttons */
+    .project-filters {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Contact improvements */
+    .contact-info {
+        gap: 1.25rem;
+    }
+    
+    .contact-item {
+        padding: 1.25rem;
+    }
+    
+    /* Experience timeline */
+    .experience-timeline {
+        padding-left: 1.25rem;
+    }
+}
+
+/* ==================== SMALL MOBILE (≤360px) ==================== */
+@media (max-width: 360px) {
+    /* Minimal container */
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    /* Ultra-compact navigation */
+    .nav {
+        padding: 0.7rem 0.75rem;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+    
+    .hamburger {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    /* Extremely compact hero */
+    .hero-banner {
+        padding: 3.5rem 0.75rem 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.15;
+    }
+    
+    .hero-main-text {
+        font-size: 1.05rem;
+    }
+    
+    .hero-sub-text {
+        font-size: 0.9rem;
+    }
+    
+    /* Minimal typography */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.7rem; }
+    .section-subtitle { 
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    /* Micro social proof badges */
+    .social-proof-badges {
+        gap: 0.4rem;
+    }
+    
+    .badge {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
+        min-width: 100px;
+    }
+    
+    /* Minimum touch targets */
+    .btn {
+        padding: 0.8rem 1.25rem;
+        font-size: 0.95rem;
+        min-height: 42px;
+    }
+    
+    /* Compact sections */
+    section {
+        padding: 2.5rem 0;
+    }
+    
+    /* Project cards minimal */
+    .project-card {
+        padding: 1.25rem;
+    }
+    
+    .project-title {
+        font-size: 1.2rem;
+    }
+    
+    /* Minimal filters */
+    .filter-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Compact contact */
+    .contact-info {
+        gap: 1rem;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+    }
+}
+
+/* ==================== OPTIONAL UX IMPROVEMENTS ==================== */
+/* These are separated as optional enhancements */
+
+/* Enhanced touch feedback (Optional) */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .nav-links a,
+    .filter-btn,
+    .project-card {
+        transition: transform 0.1s ease;
+    }
+    
+    .btn:active,
+    .nav-links a:active,
+    .filter-btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Reduced motion preference (Optional but recommended) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support (Optional) */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --text-secondary: #000000;
+    }
+    
+    [data-theme="dark"] {
+        --border-color: #ffffff;
+        --text-secondary: #ffffff;
+    }
+    
+    .btn-outline {
+        border-width: 2px;
+    }
+}
+
+/* Print styles (Optional) */
+@media print {
+    .nav,
+    .hero-banner,
+    .project-filters,
+    .show-more-btn {
+        display: none;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .project-card {
+        page-break-inside: avoid;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Orientation change handling (Optional) */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero-banner {
+        padding: 2rem 0;
+    }
+    
+    .hero-content {
+        gap: 1.5rem;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+}
