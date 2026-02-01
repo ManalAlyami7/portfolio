@@ -218,12 +218,11 @@ function initProjectsFilter() {
 }
 
 function initSocialProof() {
-    // Use a more specific selector to ensure we get the right elements
-    const buttons = document.querySelectorAll('.see-more-btn');
-    
-    buttons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const card = this.closest('.recommendation-card');
+    // Use event delegation to handle dynamically loaded content
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('see-more-btn')) {
+            const btn = e.target;
+            const card = btn.closest('.recommendation-card');
             const truncated = card.querySelector('.truncated-text');
             const full = card.querySelector('.full-text');
             
@@ -234,14 +233,14 @@ function initSocialProof() {
                     // Collapse
                     truncated.style.display = 'block';
                     full.style.display = 'none';
-                    this.textContent = 'See more...';
-                    this.setAttribute('aria-expanded', 'false');
+                    btn.textContent = 'See more...';
+                    btn.setAttribute('aria-expanded', 'false');
                 } else {
                     // Expand
                     truncated.style.display = 'none';
                     full.style.display = 'block';
-                    this.textContent = 'Show less';
-                    this.setAttribute('aria-expanded', 'true');
+                    btn.textContent = 'Show less';
+                    btn.setAttribute('aria-expanded', 'true');
                     
                     // Smooth scroll
                     setTimeout(() => {
@@ -252,17 +251,15 @@ function initSocialProof() {
                     }, 300);
                 }
             }
-        });
+        }
     });
     
-    // Keyboard accessibility
-    buttons.forEach(button => {
-        button.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
+    // Keyboard accessibility using event delegation
+    document.addEventListener('keydown', function(e) {
+        if (e.target.classList.contains('see-more-btn') && (e.key === 'Enter' || e.key === ' ')) {
+            e.preventDefault();
+            e.target.click();
+        }
     });
 }
 
