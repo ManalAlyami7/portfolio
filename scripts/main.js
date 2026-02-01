@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Projects filter
     initProjectsFilter();
     
-    // 4. Social proof
+    // 4. Show more projects
+    initShowMoreProjects();
+    
+    // 5. Social proof
     initSocialProof();
     
-    // 5. Date update
+    // 6. Date update
     updateFooterDate();
 });
 
@@ -215,6 +218,7 @@ function initProjectsFilter() {
 }
 
 function initSocialProof() {
+    // Use a more specific selector to ensure we get the right elements
     const buttons = document.querySelectorAll('.see-more-btn');
     
     buttons.forEach(btn => {
@@ -272,4 +276,43 @@ function updateFooterDate() {
         month: 'long',
         day: 'numeric'
     });
+}
+
+function initShowMoreProjects() {
+    const showMoreBtn = document.getElementById('show-more-btn');
+    const projectsGrid = document.getElementById('projects-grid');
+    if (!projectsGrid) return;
+    
+    // Initially hide non-featured projects
+    const allProjects = projectsGrid.querySelectorAll('.project-card:not(.featured)');
+    allProjects.forEach(project => {
+        project.style.display = 'none';
+    });
+    
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+            const hiddenProjects = Array.from(projectsGrid.querySelectorAll('.project-card')).filter(card => 
+                card.style.display === 'none' || 
+                getComputedStyle(card).display === 'none'
+            );
+            
+            if (hiddenProjects.length > 0) {
+                // Show all hidden projects
+                Array.from(hiddenProjects).forEach(project => {
+                    project.style.display = 'flex';
+                    // Trigger reflow to ensure proper display
+                    project.offsetHeight;
+                });
+                
+                this.textContent = 'Show Less';
+            } else {
+                // Hide non-featured projects again
+                allProjects.forEach(project => {
+                    project.style.display = 'none';
+                });
+                
+                this.textContent = 'Show More Projects';
+            }
+        });
+    }
 }
