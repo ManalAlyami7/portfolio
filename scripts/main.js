@@ -68,11 +68,19 @@ function initNavigation() {
     });
     
     function closeMenu() {
+        // Store reference to currently focused element
+        const focusedElement = document.activeElement;
+        
         navLinks.classList.remove('active');
         hamburger.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
         navLinks.setAttribute('aria-hidden', 'true');
         body.style.overflow = ''; // Unlock body scroll
+        
+        // If the focused element was inside the menu, move focus to hamburger
+        if (navLinks.contains(focusedElement)) {
+            hamburger.focus();
+        }
     }
     
     // Close on link click
@@ -318,6 +326,30 @@ const ProjectManager = {
                 card.classList.add('filtered-out');
             }
         });
+        
+        // After applying filter, ensure proper visibility based on initially-hidden
+        this.updateVisibility();
+    },
+    
+    updateVisibility: function() {
+        // Make sure initially-hidden classes are respected
+        this.allCards.forEach(card => {
+            const isFeatured = card.dataset.featured === 'true';
+            
+            if (isFeatured) {
+                // Featured cards should always be visible if not filtered out
+                if (!card.classList.contains('filtered-out')) {
+                    card.classList.remove('initially-hidden');
+                }
+            } else {
+                // Non-featured cards follow showMoreActive state
+                if (this.showMoreActive && !card.classList.contains('filtered-out')) {
+                    card.classList.remove('initially-hidden');
+                } else {
+                    card.classList.add('initially-hidden');
+                }
+            }
+        });
     },
     
     // Helper to check if everything is loaded
@@ -327,19 +359,17 @@ const ProjectManager = {
 };
 
 function initProjectsFilter() {
-    // Initialize the project manager
-    ProjectManager.init();
-    
     // If components aren't loaded yet, wait for them
-    if (!ProjectManager.isReady()) {
+    if (!document.querySelector('.project-card')) {
         window.addEventListener('componentsLoaded', () => {
-            // Reinitialize with newly loaded components
-            ProjectManager.allCards = Array.from(document.querySelectorAll('.project-card'));
-            ProjectManager.initializeCards();
-            ProjectManager.setupFilterButtons();
-            ProjectManager.setupShowMoreButton();
-            ProjectManager.applyFilter();
+            // Initialize the project manager after components are loaded
+            ProjectManager.init();
+            ProjectManager.applyFilter(); // Apply initial filter state
         });
+    } else {
+        // Components are already loaded, initialize immediately
+        ProjectManager.init();
+        ProjectManager.applyFilter(); // Apply initial filter state
     }
 }
 
