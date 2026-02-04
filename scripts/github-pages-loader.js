@@ -4,12 +4,8 @@
     
     // Script loading with error handling for GitHub Pages
     const scripts = [
-        { src: 'scripts/utils.js', defer: false },
-        { src: 'scripts/navigation.js', defer: false },
-        { src: 'scripts/projects.js', defer: true },
-        { src: 'scripts/animations.js', defer: true },
-        { src: 'scripts/micro-interactions.js', defer: true },
-        { src: 'scripts/dark-mode.js', defer: true }
+        { src: 'scripts/main.js', defer: false },
+        { src: 'scripts/animations.js', defer: true }
     ];
     
     // Load scripts sequentially to ensure dependencies
