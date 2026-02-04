@@ -21,9 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. Service worker registration
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
+            // Register service worker only if on the production domain
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            const swUrl = isGitHubPages ? '/portfolio/sw.js' : '/sw.js';
+            
+            navigator.serviceWorker.register(swUrl)
                 .then(reg => console.log('✅ Service Worker registered:', reg.scope))
-                .catch(err => console.error('❌ Service Worker registration failed:', err));
+                .catch(err => console.warn('⚠️ Service Worker registration failed (expected on local dev):', err));
         });
     }
 });
