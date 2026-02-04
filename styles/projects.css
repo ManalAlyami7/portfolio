@@ -50,10 +50,13 @@
 }
 
 .project-card:hover {
-    transform: translateY(-8px) rotate(1deg); /* Enhanced UX: Lift effect with slight tilt */
+    transform: perspective(1000px) 
+                rotateX(var(--rotate-x, 0deg)) 
+                rotateY(var(--rotate-y, 0deg)) 
+                translateY(-8px);
     box-shadow: 0 12px 24px rgba(0,0,0,0.18);
     border-color: var(--primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .project-image {
@@ -323,6 +326,20 @@
 /* Hidden projects for filtering */
 .project-card.hidden {
     display: none;
+}
+
+/* Hide projects using CLASS, not inline styles */
+.project-card.filtered-out {
+    display: none !important;
+}
+
+.project-card.initially-hidden:not(.filtered-out) {
+    display: none;
+}
+
+/* When "Show More" is active, show all non-filtered projects */
+.project-card:not(.filtered-out) {
+    display: flex;
 }
 
 /* ==================== VISUAL CONSISTENCY CLASSES ==================== */

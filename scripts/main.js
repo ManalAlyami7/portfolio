@@ -31,8 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
     
     if (!hamburger || !navLinks) return;
+    
+    // Initialize ARIA attributes
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Toggle navigation menu');
+    navLinks.setAttribute('aria-hidden', 'true');
+    navLinks.setAttribute('role', 'menu');
     
     // Single, clean toggle handler
     hamburger.addEventListener('click', (e) => {
@@ -41,25 +48,37 @@ function initNavigation() {
         
         const isActive = navLinks.classList.contains('active');
         
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', !isActive);
-        navLinks.setAttribute('aria-hidden', isActive);
-        
-        // Trap focus in mobile menu
         if (!isActive) {
+            // Open menu
+            navLinks.classList.add('active');
+            hamburger.classList.add('active');
+            hamburger.setAttribute('aria-expanded', 'true');
+            navLinks.setAttribute('aria-hidden', 'false');
+            body.style.overflow = 'hidden'; // Lock body scroll
+            
+            // Focus first link
             const firstLink = navLinks.querySelector('a');
-            if (firstLink) firstLink.focus();
+            if (firstLink) {
+                setTimeout(() => firstLink.focus(), 100);
+            }
+        } else {
+            // Close menu
+            closeMenu();
         }
     });
+    
+    function closeMenu() {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        navLinks.setAttribute('aria-hidden', 'true');
+        body.style.overflow = ''; // Unlock body scroll
+    }
     
     // Close on link click
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            navLinks.setAttribute('aria-hidden', 'true');
+            closeMenu();
         });
     });
     
@@ -68,20 +87,14 @@ function initNavigation() {
         if (navLinks.classList.contains('active') && 
             !hamburger.contains(e.target) && 
             !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            navLinks.setAttribute('aria-hidden', 'true');
+            closeMenu();
         }
     });
     
     // Close menu on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            navLinks.setAttribute('aria-hidden', 'true');
+            closeMenu();
             hamburger.focus();
         }
     });
@@ -89,15 +102,11 @@ function initNavigation() {
     // Handle window resize - close menu on desktop view
     window.addEventListener('resize', () => {
         if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            navLinks.setAttribute('aria-hidden', 'true');
+            closeMenu();
         }
     });
     
-    // Initialize ARIA attributes
-    navLinks.setAttribute('aria-hidden', 'true');
+    
     
     // Smooth scrolling for anchor links with offset for fixed header
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -199,77 +208,213 @@ function initDarkMode() {
     console.log('✅ Dark mode initialized successfully');
 }
 
-function initProjectsFilter() {
-    const buttons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.project-card');
+// Global state tracking
+const ProjectManager = {
+    currentFilter: 'all',
+    showMoreActive: false,
+    allCards: [],
     
-    if (buttons.length === 0) return;
+    init: function() {
+        // Get all cards once
+        this.allCards = Array.from(document.querySelectorAll('.project-card'));
+        this.initializeCards();
+        this.setupFilterButtons();
+        this.setupShowMoreButton();
+    },
     
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active state
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    initializeCards: function() {
+        // Add state classes to all cards
+        this.allCards.forEach(card => {
+            const isFeatured = card.classList.contains('featured');
             
-            // Filter cards
-            const filter = btn.dataset.filter;
-            cards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.classList.remove('hidden');
-                    card.style.display = 'flex';
-                } else {
-                    card.classList.add('hidden');
-                    card.style.display = 'none';
+            // Mark featured vs non-featured
+            if (isFeatured) {
+                card.dataset.featured = 'true';
+            } else {
+                card.dataset.featured = 'false';
+                // Initially hide non-featured
+                card.classList.add('initially-hidden');
+            }
+        });
+    },
+    
+    setupFilterButtons: function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update filter
+                this.currentFilter = btn.dataset.filter;
+                
+                // Reset show more when filter changes
+                this.showMoreActive = false;
+                const showMoreBtn = document.getElementById('show-more-btn');
+                if (showMoreBtn) {
+                    showMoreBtn.textContent = 'Show More Projects';
+                    showMoreBtn.dataset.expanded = 'false';
                 }
+                
+                // Apply filter
+                this.applyFilter();
             });
         });
-    });
+    },
+    
+    setupShowMoreButton: function() {
+        const showMoreBtn = document.getElementById('show-more-btn');
+        if (!showMoreBtn) return;
+        
+        showMoreBtn.addEventListener('click', () => {
+            this.showMoreActive = !this.showMoreActive;
+            
+            if (this.showMoreActive) {
+                // Show all non-featured projects
+                this.allCards.forEach(card => {
+                    if (card.dataset.featured === 'false') {
+                        card.classList.remove('initially-hidden');
+                    }
+                });
+                showMoreBtn.textContent = 'Show Less';
+                showMoreBtn.dataset.expanded = 'true';
+            } else {
+                // Hide non-featured projects
+                this.allCards.forEach(card => {
+                    if (card.dataset.featured === 'false') {
+                        card.classList.add('initially-hidden');
+                    }
+                });
+                showMoreBtn.textContent = 'Show More Projects';
+                showMoreBtn.dataset.expanded = 'false';
+                
+                // Scroll to projects section
+                document.getElementById('projects').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        });
+    },
+    
+    applyFilter: function() {
+        // Apply both filter and show more state
+        this.allCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+            const isFeatured = card.dataset.featured === 'true';
+            
+            // Check if card passes filter
+            const passesFilter = this.currentFilter === 'all' || cardCategory === this.currentFilter;
+            
+            // Check if card should be shown based on show more state
+            const shouldShowBasedOnFeatured = isFeatured || this.showMoreActive;
+            
+            // Apply both conditions
+            if (passesFilter && shouldShowBasedOnFeatured) {
+                card.classList.remove('filtered-out');
+            } else {
+                card.classList.add('filtered-out');
+            }
+        });
+    },
+    
+    // Helper to check if everything is loaded
+    isReady: function() {
+        return this.allCards.length > 0 && document.querySelector('.filter-btn') !== null;
+    }
+};
+
+function initProjectsFilter() {
+    // Initialize the project manager
+    ProjectManager.init();
+    
+    // If components aren't loaded yet, wait for them
+    if (!ProjectManager.isReady()) {
+        window.addEventListener('componentsLoaded', () => {
+            // Reinitialize with newly loaded components
+            ProjectManager.allCards = Array.from(document.querySelectorAll('.project-card'));
+            ProjectManager.initializeCards();
+            ProjectManager.setupFilterButtons();
+            ProjectManager.setupShowMoreButton();
+            ProjectManager.applyFilter();
+        });
+    }
 }
 
 function initSocialProof() {
-    // Use event delegation to handle dynamically loaded content
+    // Wait for components to load
+    window.addEventListener('componentsLoaded', function() {
+        setupSocialProofButtons();
+    });
+    
+    // Also try immediate setup in case already loaded
+    if (document.querySelector('.see-more-btn')) {
+        setupSocialProofButtons();
+    }
+}
+
+function setupSocialProofButtons() {
+    // Use event delegation but check closest()
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('see-more-btn')) {
-            const btn = e.target;
-            const card = btn.closest('.recommendation-card');
-            const truncated = card.querySelector('.truncated-text');
-            const full = card.querySelector('.full-text');
+        const btn = e.target.closest('.see-more-btn');
+        if (!btn) return;
+        
+        e.preventDefault();
+        
+        const card = btn.closest('.recommendation-card');
+        if (!card) {
+            console.warn('No recommendation card found');
+            return;
+        }
+        
+        const truncated = card.querySelector('.truncated-text');
+        const full = card.querySelector('.full-text');
+        
+        if (!truncated || !full) {
+            console.warn('Missing text elements');
+            return;
+        }
+        
+        // Use classes instead of inline styles
+        const isExpanded = truncated.classList.contains('hidden');
+        
+        if (isExpanded) {
+            // Collapse
+            truncated.classList.remove('hidden');
+            full.classList.add('hidden');
+            btn.textContent = 'See more...';
+            btn.setAttribute('aria-expanded', 'false');
+        } else {
+            // Expand
+            truncated.classList.add('hidden');
+            full.classList.remove('hidden');
+            btn.textContent = 'Show less';
+            btn.setAttribute('aria-expanded', 'true');
             
-            if (truncated && full) {
-                const isExpanded = truncated.style.display === 'none';
-                
-                if (isExpanded) {
-                    // Collapse
-                    truncated.style.display = 'block';
-                    full.style.display = 'none';
-                    btn.textContent = 'See more...';
-                    btn.setAttribute('aria-expanded', 'false');
-                } else {
-                    // Expand
-                    truncated.style.display = 'none';
-                    full.style.display = 'block';
-                    btn.textContent = 'Show less';
-                    btn.setAttribute('aria-expanded', 'true');
-                    
-                    // Smooth scroll
-                    setTimeout(() => {
-                        card.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'nearest' 
-                        });
-                    }, 300);
-                }
+            // Smooth scroll with delay to allow for expansion
+            setTimeout(() => {
+                card.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+            }, 100);
+        }
+    }, { once: false }); // Allow multiple clicks
+    
+    // Keyboard accessibility using event delegation
+    document.addEventListener('keydown', function(e) {
+        if (e.target.classList.contains('see-more-btn') || e.target.closest('.see-more-btn')) {
+            const btn = e.target.classList.contains('see-more-btn') ? e.target : e.target.closest('.see-more-btn');
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                btn.click();
             }
         }
     });
     
-    // Keyboard accessibility using event delegation
-    document.addEventListener('keydown', function(e) {
-        if (e.target.classList.contains('see-more-btn') && (e.key === 'Enter' || e.key === ' ')) {
-            e.preventDefault();
-            e.target.click();
-        }
-    });
+    console.log('✅ Social proof buttons initialized');
 }
 
 function updateFooterDate() {
@@ -285,40 +430,7 @@ function updateFooterDate() {
 }
 
 function initShowMoreProjects() {
-    const showMoreBtn = document.getElementById('show-more-btn');
-    const projectsGrid = document.getElementById('projects-grid');
-    if (!projectsGrid) return;
-    
-    // Initially hide non-featured projects
-    const allProjects = projectsGrid.querySelectorAll('.project-card:not(.featured)');
-    allProjects.forEach(project => {
-        project.style.display = 'none';
-    });
-    
-    if (showMoreBtn) {
-        showMoreBtn.addEventListener('click', function() {
-            const hiddenProjects = Array.from(projectsGrid.querySelectorAll('.project-card')).filter(card => 
-                card.style.display === 'none' || 
-                getComputedStyle(card).display === 'none'
-            );
-            
-            if (hiddenProjects.length > 0) {
-                // Show all hidden projects
-                Array.from(hiddenProjects).forEach(project => {
-                    project.style.display = 'flex';
-                    // Trigger reflow to ensure proper display
-                    project.offsetHeight;
-                });
-                
-                this.textContent = 'Show Less';
-            } else {
-                // Hide non-featured projects again
-                allProjects.forEach(project => {
-                    project.style.display = 'none';
-                });
-                
-                this.textContent = 'Show More Projects';
-            }
-        });
-    }
+    // This functionality is now handled by ProjectManager
+    // Kept for compatibility with existing code structure
+    console.log('✅ Show more projects managed by ProjectManager');
 }

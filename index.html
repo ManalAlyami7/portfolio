@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manal Alyami - Data Scientist & AI Engineer Portfolio</title>
-    <!-- Accessibility: Skip to content link -->
-    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
     <!-- Enhanced Favicon Configuration -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -88,6 +86,17 @@
     <meta name="googlebot" content="index, follow">
     <meta name="theme-color" content="#2e5939">
     
+    <!-- Anti-flicker script for dark mode -->
+    <script>
+    // Prevent dark mode flicker - runs before page renders
+    (function() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = (savedTheme === 'dark' || (savedTheme === 'auto' && systemPrefersDark)) ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
+    
     <!-- GitHub Pages Compatibility with Comprehensive Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://api.github.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -122,12 +131,17 @@
     <link rel="stylesheet" href="styles/responsive.css?v=1.1">
 </head>
 <body>
+    <!-- Accessibility: Skip to content link -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
     <main id="main-content" tabindex="-1">
         <!-- Loading indicator -->
         <div id="loading-indicator" class="loading-overlay">
             <div class="loading-spinner">
                 <div class="spinner"></div>
-                <p>Loading portfolio...</p>
+                <p id="loading-text">Loading portfolio...</p>
+                <div class="loading-progress">
+                    <div class="loading-bar" id="loading-bar"></div>
+                </div>
             </div>
         </div>
         
@@ -167,11 +181,26 @@
 }
 </script>
     
-    <!-- GitHub Pages Debug Helper -->
-    <script src="scripts/github-debug.js"></script>
-    
-    <!-- GitHub Pages Compatible Script Loader -->
-    <script src="scripts/github-pages-loader-enhanced.js?v=1.1"></script>
+    <script>
+// Check if scripts exist before loading
+function loadScriptSafely(src, callback) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = callback;
+    script.onerror = function() {
+        console.warn(`Script not found: ${src}`);
+        if (callback) callback();
+    };
+    document.head.appendChild(script);
+}
+
+// Load in order
+loadScriptSafely('scripts/component-loader.js', function() {
+    loadScriptSafely('scripts/main.js', function() {
+        loadScriptSafely('scripts/animations.js');
+    });
+});
+</script>
     
     <!-- NOTE FOR FUTURE: For production, consider adding SRI hashes for local JavaScript files as well -->
     <!-- Example format: <script src="scripts/main.js" integrity="sha384-...GENERATED_HASH..."> -->
@@ -360,175 +389,11 @@
             }
         });
         
-        function initSocialProofExpand() {
-            const seeMoreButtons = document.querySelectorAll('.see-more-btn');
-            
-            seeMoreButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const card = this.closest('.recommendation-card');
-                    const previewQuote = card.querySelector('.preview-quote');
-                    const fullQuote = card.querySelector('.full-quote');
-                    
-                    if (fullQuote && fullQuote.style.display === 'none') {
-                        // Expand the quote
-                        if (previewQuote) {
-                            previewQuote.style.display = 'none';
-                        }
-                        fullQuote.style.display = 'block';
-                        this.textContent = 'Show less';
-                    } else {
-                        // Collapse the quote
-                        if (fullQuote) {
-                            fullQuote.style.display = 'none';
-                        }
-                        if (previewQuote) {
-                            previewQuote.style.display = 'block';
-                        }
-                        this.textContent = 'Read more';
-                    }
-                });
-            });
-        }
-        
-        // Initialize dark mode functionality
-        function initDarkMode() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (!themeToggle || !themeIcon) {
-                console.warn('⚠️ Dark mode elements not found, retrying in 100ms...');
-                setTimeout(initDarkMode, 100);
-                return;
-            }
-            
-            console.log('🌙 Initializing dark mode functionality');
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            // Apply initial theme
-            const initialTheme = (savedTheme === 'dark' || (savedTheme === 'auto' && systemPrefersDark)) ? 'dark' : 'light';
-            applyTheme(initialTheme);
-            
-            // Add event listener
-            themeToggle.addEventListener('click', function() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
-                
-                // Add visual feedback
-                this.style.transform = 'rotate(30deg) scale(1.1)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 300);
-                
-                console.log('🌙 Theme toggled to:', newTheme);
-            });
-            
-            // Listen for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (localStorage.getItem('theme') === 'auto') {
-                    applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-            
-            function applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                
-                if (theme === 'dark') {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                    themeIcon.title = 'Switch to light mode';
-                } else {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                    themeIcon.title = 'Switch to dark mode';
-                }
-                
-                // Dispatch custom event
-                window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
-            }
-            
-            console.log('✅ Dark mode initialized successfully');
-        }
-        
-        // Initialize show more projects functionality
-        function initShowMoreProjects() {
-            const showMoreBtn = document.getElementById('show-more-btn');
-            const projectsGrid = document.getElementById('projects-grid');
-            if (!projectsGrid) return;
-            
-            const allProjects = projectsGrid.querySelectorAll('.project-card:not(.featured)');
-            
-            // Initially hide non-featured projects
-            allProjects.forEach(project => {
-                project.style.display = 'none';
-            });
-            
-            if (showMoreBtn) {
-                showMoreBtn.addEventListener('click', function() {
-                    const hiddenProjects = Array.from(projectsGrid.querySelectorAll('.project-card')).filter(card => 
-                        card.style.display === 'none' || 
-                        getComputedStyle(card).display === 'none'
-                    );
-                    
-                    if (hiddenProjects.length > 0) {
-                        // Show all hidden projects
-                        Array.from(hiddenProjects).forEach(project => {
-                            project.style.display = 'flex';
-                            // Trigger reflow to ensure proper display
-                            project.offsetHeight;
-                        });
-                        
-                        this.textContent = 'Show Less';
-                    } else {
-                        // Hide non-featured projects again
-                        allProjects.forEach(project => {
-                            project.style.display = 'none';
-                        });
-                        
-                        this.textContent = 'Show More Projects';
-                    }
-                });
-            }
-        }
+
+
     </script>
 
 
-    <!-- Fallback for critical functionality -->
-    <script>
-        // Manual initialization fallback
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🔄 Manual initialization fallback triggered');
-            
-            // Dark mode fallback
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = document.getElementById('theme-icon');
-            if (themeToggle && themeIcon) {
-                themeToggle.addEventListener('click', function() {
-                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    
-                    if (newTheme === 'dark') {
-                        themeIcon.classList.remove('fa-moon');
-                        themeIcon.classList.add('fa-sun');
-                    } else {
-                        themeIcon.classList.remove('fa-sun');
-                        themeIcon.classList.add('fa-moon');
-                    }
-                    
-                    console.log('🌙 Manual dark mode toggle:', newTheme);
-                });
-            }
-            
 
-            
-            console.log('✅ Manual initialization completed');
-        });
-    </script>
 </body>
 </html>

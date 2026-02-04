@@ -43,24 +43,46 @@ function initMicroInteractions() {
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
-        // Add tilt effect on mouse move
+        let rafId = null;
+        let lastX = 0;
+        let lastY = 0;
+        
+        // Throttled tilt effect
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            if (rafId) return; // Skip if already scheduled
             
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+            rafId = requestAnimationFrame(() => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Only update if movement is significant
+                if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / 10);
+                    const rotateY = ((centerX - x) / 10);
+                    
+                    // Use CSS custom properties instead of direct transform
+                    card.style.setProperty('--rotate-x', `${rotateX}deg`);
+                    card.style.setProperty('--rotate-y', `${rotateY}deg`);
+                    
+                    lastX = x;
+                    lastY = y;
+                }
+                
+                rafId = null;
+            });
         });
         
-        // Reset on mouse leave
         card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            card.style.removeProperty('--rotate-x');
+            card.style.removeProperty('--rotate-y');
         });
     });
     

@@ -1,3 +1,38 @@
+/* ==================== TOUCH TARGET STANDARDS ==================== */
+:root {
+    --touch-target-min: 48px; /* WCAG 2.5.5 Level AAA */
+}
+
+/* Ensure all interactive elements meet minimum size */
+.btn,
+.filter-btn,
+.hamburger,
+.theme-toggle,
+.nav-links a,
+.see-more-btn {
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+}
+
+/* Exception for text links in paragraphs (not buttons) */
+p a:not(.btn) {
+    min-height: auto;
+    min-width: auto;
+    /* But ensure adequate padding */
+    padding: 0.25rem 0;
+}
+
+@media (max-width: 768px) {
+    /* Even more generous on mobile */
+    .btn,
+    .filter-btn,
+    .hamburger,
+    .theme-toggle {
+        min-height: 48px;
+        min-width: 48px;
+    }
+}
+
 /* ==================== RESPONSIVE ==================== */
 
 /* Desktop optimization (1025px - 1200px) */

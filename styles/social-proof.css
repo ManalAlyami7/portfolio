@@ -307,6 +307,23 @@
     line-clamp: unset;
 }
 
+/* Hidden class for social proof text */
+.hidden {
+    display: none !important;
+}
+
+.truncated-text {
+    display: block;
+}
+
+.full-text {
+    display: none;
+}
+
+.full-text:not(.hidden) {
+    display: block;
+}
+
 /* See more button */
 .see-more-btn {
     background: transparent;
