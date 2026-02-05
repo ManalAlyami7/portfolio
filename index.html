@@ -4,6 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manal Alyami - Data Scientist & AI Engineer Portfolio</title>
+    
+    <!-- HTTPS Enforcement -->
+    <script>
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+            location.replace('https:' + location.href.substring(location.protocol.length));
+        }
+    </script>
     <!-- Enhanced Favicon Configuration -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -25,71 +32,8 @@
     <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
-    <!-- Font Awesome with enhanced error handling and tracking prevention mitigation -->
-    <script>
-        // Handle Font Awesome loading and tracking prevention
-        function loadFontAwesome() {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-            link.integrity = 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==';
-            link.crossOrigin = 'anonymous';
-            link.referrerPolicy = 'no-referrer';
-            
-            link.onerror = function() {
-                console.warn('⚠️ Font Awesome failed to load, using fallbacks');
-                // Add fallback CSS for common icons
-                const fallbackCSS = `
-                    .fa-github:before { content: "GH"; }
-                    .fa-linkedin:before { content: "LI"; }
-                    .fa-envelope:before { content: "📧"; }
-                    .fa-download:before { content: "⬇️"; }
-                    .fa-external-link-alt:before { content: "↗️"; }
-                    .fa-moon:before { content: "🌙"; }
-                    .fa-sun:before { content: "☀️"; }
-                    .fa-award:before { content: "🏆"; }
-                    .fa-trophy:before { content: "🏅"; }
-                    .fa-building:before { content: "🏢"; }
-                    .fa-robot:before { content: "🤖"; }
-                    .fa-car:before { content: "🚗"; }
-                    .fa-dumbbell:before { content: "💪"; }
-                    .fa-brain:before { content: "🧠"; }
-                    .fa-book:before { content: "📖"; }
-                    .fa-home:before { content: "🏠"; }
-                    .fa-music:before { content: "🎵"; }
-                    .fa-cloud-sun:before { content: "☀️"; }
-                    .fa-heartbeat:before { content: "❤️"; }
-                    .fa-user-graduate:before { content: "🎓"; }
-                    .fa-chart-line:before { content: "📈"; }
-                    .fa-code:before { content: "</>"; }
-                    .fa-laptop-code:before { content: "💻"; }
-                    .fa-mobile-alt:before { content: "📱"; }
-                    .fa-database:before { content: "🗄️"; }
-                    .fa-server:before { content: "🖥️"; }
-                    .fa-shield-alt:before { content: "🛡️"; }
-                    .fa-bug:before { content: "🐛"; }
-                    .fa-tools:before { content: "🛠️"; }
-                    .fa-cogs:before { content: "⚙️"; }
-                `;
-                const style = document.createElement('style');
-                style.textContent = fallbackCSS;
-                document.head.appendChild(style);
-            };
-            
-            link.onload = function() {
-                console.log('✅ Font Awesome loaded successfully');
-            };
-            
-            document.head.appendChild(link);
-        }
-        
-        // Load Font Awesome after DOM is ready to handle tracking prevention
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadFontAwesome);
-        } else {
-            loadFontAwesome();
-        }
-    </script>
+    <!-- Font Awesome loader script -->
+    <script src="scripts/font-loader.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     
     <!-- Preload critical resources -->
@@ -126,30 +70,13 @@
     <meta name="theme-color" content="#2e5939">
     
     <!-- Anti-flicker script for dark mode -->
-    <script>
-    // Prevent dark mode flicker - runs before page renders
-    (function() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = (savedTheme === 'dark' || (savedTheme === 'auto' && systemPrefersDark)) ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-    })();
-    </script>
+    <script src="scripts/theme-initializer.js"></script>
     
-    <!-- GitHub Pages Compatibility with Comprehensive Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+    <!-- GitHub Pages Compatibility with Strict Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://api.github.com; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <!-- Immediate error handling for loader issues -->
-    <script>
-        window.addEventListener('error', function(e) {
-            if (e.filename && (e.filename.includes('github-pages-loader') || e.filename.includes('portfolio')) && 
-                e.message && e.message.includes('Cannot read properties of undefined')) {
-                console.warn('⚠️ Intercepted GitHub Pages loader error, continuing gracefully');
-                e.preventDefault();
-                return true;
-            }
-        });
-    </script>
+    <script src="scripts/error-handler.js"></script>
     
     <!-- External CSS - SRI hash already present (GOOD!) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -220,217 +147,7 @@
 }
 </script>
     
-    <script>
-// Check if scripts exist before loading
-function loadScriptSafely(src, callback) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = callback;
-    script.onerror = function() {
-        console.warn(`Script not found: ${src}`);
-        if (callback) callback();
-    };
-    document.head.appendChild(script);
-}
-
-// Load in order
-loadScriptSafely('scripts/component-loader.js', function() {
-    loadScriptSafely('scripts/main.js', function() {
-        loadScriptSafely('scripts/animations.js');
-    });
-});
-</script>
-    
-    <!-- NOTE FOR FUTURE: For production, consider adding SRI hashes for local JavaScript files as well -->
-    <!-- Example format: <script src="scripts/main.js" integrity="sha384-...GENERATED_HASH..."> -->
-    
-    <script>
-        // Dynamic component loader with comprehensive error handling and XSS protection
-        async function loadComponent(componentName, targetElementId) {
-            const targetElement = document.getElementById(targetElementId);
-            
-            // Show loading state
-            if (targetElement) {
-                targetElement.innerHTML = `
-                    <div class="loading-placeholder">
-                        <div class="placeholder-spinner"></div>
-                        <p>Loading ${componentName}...</p>
-                    </div>
-                `;
-            }
-            
-            try {
-                const response = await fetch(`components/${componentName}.html`);
-                
-                if (response.ok) {
-                    const html = await response.text();
-                    if (targetElement) {
-                        // Safer approach: Use DOMParser to parse HTML and sanitize
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-                        
-                        // Clear the target element
-                        targetElement.innerHTML = '';
-                        
-                        // Extract body content and append child nodes safely
-                        const bodyContent = doc.body ? doc.body.childNodes : doc.childNodes;
-                        
-                        // Append each child node individually
-                        for (let i = 0; i < bodyContent.length; i++) {
-                            const node = bodyContent[i].cloneNode(true);
-                            targetElement.appendChild(node);
-                        }
-                    }
-                    return true; // Success
-                } else {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-            } catch (error) {
-                console.error(`Failed to load ${componentName}:`, error);
-                
-                // Show user-friendly error state
-                if (targetElement) {
-                    targetElement.innerHTML = `
-                        <div class="error-state" role="alert">
-                            <div class="error-icon">
-                                <i class="fas fa-exclamation-triangle"></i>
-                            </div>
-                            <h3>Content temporarily unavailable</h3>
-                            <p>Unable to load the ${componentName} section. This might be due to a network issue.</p>
-                            <button class="btn btn-outline retry-button" onclick="retryLoadComponent('${componentName}', '${targetElementId}')">
-                                <i class="fas fa-redo"></i> Try Again
-                            </button>
-                        </div>
-                    `;
-                }
-                return false; // Failure
-            }
-        }
-        
-        // Retry function for failed components
-        async function retryLoadComponent(componentName, targetElementId) {
-            const targetElement = document.getElementById(targetElementId);
-            if (targetElement) {
-                targetElement.innerHTML = `
-                    <div class="retry-loading">
-                        <div class="spinner"></div>
-                        <p>Retrying...</p>
-                    </div>
-                `;
-            }
-            
-            // Wait a moment before retrying
-            await new Promise(resolve => setTimeout(resolve, 500));
-            
-            const success = await loadComponent(componentName, targetElementId);
-            
-            if (!success) {
-                // If retry fails, show a more persistent error
-                const targetElement = document.getElementById(targetElementId);
-                if (targetElement) {
-                    targetElement.innerHTML = `
-                        <div class="error-state persistent-error" role="alert">
-                            <div class="error-icon">
-                                <i class="fas fa-exclamation-circle"></i>
-                            </div>
-                            <h3>Still having trouble</h3>
-                            <p>We're unable to load this content right now. Please try refreshing the page or come back later.</p>
-                            <div class="error-details">
-                                <small>Error: Component ${componentName} failed to load</small>
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-        }
-        
-        // Load all components when DOM is ready
-        document.addEventListener('DOMContentLoaded', async function() {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            
-            try {
-                // Phase 1: Load critical above-the-fold components first (immediate render)
-                const headerResult = await loadComponent('header', 'header-component');
-                const heroResult = await loadComponent('hero', 'hero-component');
-                
-                // Hide loading indicator after critical components load
-                if (loadingIndicator) {
-                    loadingIndicator.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingIndicator.style.display = 'none';
-                    }, 300);
-                }
-                
-                // Phase 2: Load essential content components in parallel
-                const aboutResult = loadComponent('about', 'about-component');
-                const projectsResult = loadComponent('projects', 'projects-component');
-                
-                // Phase 3: Load secondary components with lower priority
-                const experienceResult = loadComponent('experience', 'experience-component');
-                const socialProofResult = loadComponent('social-proof', 'social-proof-component');
-                const contactResult = loadComponent('contact', 'contact-component');
-                const footerResult = loadComponent('footer', 'footer-component');
-                
-                // Wait for essential components to load
-                await Promise.all([aboutResult, projectsResult]);
-                
-                // Initialize functionality after essential components are loaded
-                setTimeout(() => {
-                    // Initialize dark mode functionality
-                    initDarkMode();
-                    
-                    // Set current year in footer
-                    const currentYearElement = document.getElementById('current-year');
-                    if (currentYearElement) {
-                        currentYearElement.textContent = new Date().getFullYear();
-                    }
-                    
-                    // Set update date in footer
-                    const updateDateElement = document.getElementById('update-date');
-                    if (updateDateElement) {
-                        const today = new Date();
-                        const formattedDate = today.toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                        });
-                        updateDateElement.textContent = formattedDate;
-                    }
-                }, 100);
-                
-                // Load secondary components and handle errors gracefully
-                Promise.allSettled([experienceResult, socialProofResult, contactResult, footerResult]).then(results => {
-                    results.forEach((result, index) => {
-                        if (result.status === 'rejected') {
-                            console.warn(`Component load failed - Index ${index}:`, result.reason);
-                        }
-                    });
-                });
-                
-            } catch (error) {
-                console.error('Critical component loading failed:', error);
-                // Hide loading indicator even on error
-                if (loadingIndicator) {
-                    loadingIndicator.style.display = 'none';
-                }
-                
-                // Show user-friendly error message
-                const mainContent = document.getElementById('main-content');
-                if (mainContent) {
-                    mainContent.innerHTML = `
-                        <div class="critical-error-state" style="padding: 2rem; text-align: center;">
-                            <h2>Something went wrong</h2>
-                            <p>We couldn't load the content for this page. Please refresh to try again.</p>
-                            <button onclick="location.reload()" class="btn btn-primary">Refresh Page</button>
-                        </div>
-                    `;
-                }
-            }
-        });
-        
-
-
-    </script>
+    <script src="scripts/component-loader-ext.js"></script>
 
 
 

@@ -26,8 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const swUrl = isGitHubPages ? '/portfolio/sw.js' : '/sw.js';
             
             navigator.serviceWorker.register(swUrl)
-                .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+                .then(reg => {
+                    console.log('✅ Service Worker registered:', reg.scope);
+                    
+                    // Listen for updates
+                    reg.addEventListener('updatefound', () => {
+                        const installingWorker = reg.installing;
+                        installingWorker.addEventListener('statechange', () => {
+                            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New update available
+                                if (confirm('New version available! Reload to update?')) {
+                                    // Send skip waiting message to service worker
+                                    if (reg.waiting) {
+                                        reg.waiting.postMessage({type: 'SKIP_WAITING'});
+                                    }
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    });
+                })
                 .catch(err => console.warn('⚠️ Service Worker registration failed (expected on local dev):', err));
+        });
+        
+        // Listen for controller changes
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            window.location.reload();
         });
     }
 });
@@ -244,24 +268,22 @@ const ProjectManager = {
                 card.dataset.featured = 'true';
             } else {
                 card.dataset.featured = 'false';
-                // Initially hide non-featured
-                card.classList.add('initially-hidden');
             }
         });
     },
     
     setupFilterButtons: function() {
         const filterButtons = document.querySelectorAll('.filter-btn');
-        
+            
         filterButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 // Update active button
-                filterButtons.forEach(b => b.classList.remove('active'));
+                filterButtons.forEach(b => b.classList.remove('active')); 
                 btn.classList.add('active');
-                
+                    
                 // Update filter
                 this.currentFilter = btn.dataset.filter;
-                
+                    
                 // Reset show more when filter changes
                 this.showMoreActive = false;
                 const showMoreBtn = document.getElementById('show-more-btn');
@@ -269,7 +291,7 @@ const ProjectManager = {
                     showMoreBtn.textContent = 'Show More Projects';
                     showMoreBtn.dataset.expanded = 'false';
                 }
-                
+                    
                 // Apply filter
                 this.applyFilter();
             });
@@ -284,21 +306,9 @@ const ProjectManager = {
             this.showMoreActive = !this.showMoreActive;
             
             if (this.showMoreActive) {
-                // Show all non-featured projects
-                this.allCards.forEach(card => {
-                    if (card.dataset.featured === 'false') {
-                        card.classList.remove('initially-hidden');
-                    }
-                });
                 showMoreBtn.textContent = 'Show Less';
                 showMoreBtn.dataset.expanded = 'true';
             } else {
-                // Hide non-featured projects
-                this.allCards.forEach(card => {
-                    if (card.dataset.featured === 'false') {
-                        card.classList.add('initially-hidden');
-                    }
-                });
                 showMoreBtn.textContent = 'Show More Projects';
                 showMoreBtn.dataset.expanded = 'false';
                 
@@ -308,6 +318,9 @@ const ProjectManager = {
                     block: 'start' 
                 });
             }
+            
+            // Reapply filter to update visibility based on new showMore state
+            this.applyFilter();
         });
     },
     
@@ -320,38 +333,27 @@ const ProjectManager = {
             // Check if card passes filter
             const passesFilter = this.currentFilter === 'all' || cardCategory === this.currentFilter;
             
-            // Check if card should be shown based on show more state
-            const shouldShowBasedOnFeatured = isFeatured || this.showMoreActive;
-            
-            // Apply both conditions
-            if (passesFilter && shouldShowBasedOnFeatured) {
+            if (passesFilter) {
+                // Card passes the filter
                 card.classList.remove('filtered-out');
-            } else {
-                card.classList.add('filtered-out');
-            }
-        });
-        
-        // After applying filter, ensure proper visibility based on initially-hidden
-        this.updateVisibility();
-    },
-    
-    updateVisibility: function() {
-        // Make sure initially-hidden classes are respected
-        this.allCards.forEach(card => {
-            const isFeatured = card.dataset.featured === 'true';
-            
-            if (isFeatured) {
-                // Featured cards should always be visible if not filtered out
-                if (!card.classList.contains('filtered-out')) {
-                    card.classList.remove('initially-hidden');
-                }
-            } else {
-                // Non-featured cards follow showMoreActive state
-                if (this.showMoreActive && !card.classList.contains('filtered-out')) {
+                
+                // Determine if card should be visible based on showMore state
+                // Featured cards are always visible if they pass the filter
+                // Non-featured cards are only visible if showMoreActive is true
+                if (isFeatured) {
+                    // Featured cards are always visible if they pass the filter
                     card.classList.remove('initially-hidden');
                 } else {
-                    card.classList.add('initially-hidden');
+                    // Non-featured cards depend on showMoreActive state
+                    if (this.showMoreActive) {
+                        card.classList.remove('initially-hidden');
+                    } else {
+                        card.classList.add('initially-hidden');
+                    }
                 }
+            } else {
+                // Card doesn't pass filter, hide it
+                card.classList.add('filtered-out');
             }
         });
     },
@@ -363,18 +365,56 @@ const ProjectManager = {
 };
 
 function initProjectsFilter() {
-    // If components aren't loaded yet, wait for them
-    if (!document.querySelector('.project-card')) {
-        window.addEventListener('componentsLoaded', () => {
-            // Initialize the project manager after components are loaded
-            ProjectManager.init();
-            ProjectManager.applyFilter(); // Apply initial filter state
-        });
-    } else {
-        // Components are already loaded, initialize immediately
-        ProjectManager.init();
-        ProjectManager.applyFilter(); // Apply initial filter state
-    }
+    // Wait for components to be ready
+    const waitForComponents = setInterval(() => {
+        if (document.querySelectorAll('.project-card').length > 0) {
+            clearInterval(waitForComponents);
+            
+            try {
+                ProjectManager.init();
+                ProjectManager.applyFilter();
+            } catch (error) {
+                console.error('Project filter initialization failed:', error);
+                // Show minimal fallback UI
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    projectsSection.innerHTML = `
+                        <div class="fallback-projects">
+                            <h2>Projects</h2>
+                            <p>Project filtering is temporarily unavailable. <button onclick="location.reload()">Reload</button></p>
+                        </div>
+                    `;
+                }
+            }
+        }
+    }, 100);
+    
+    // Timeout after 5 seconds
+    setTimeout(() => {
+        clearInterval(waitForComponents);
+        
+        // Check if components loaded after timeout
+        if (document.querySelectorAll('.project-card').length === 0) {
+            console.warn('Project components not loaded after timeout, attempting initialization');
+            
+            try {
+                ProjectManager.init();
+                ProjectManager.applyFilter();
+            } catch (error) {
+                console.error('Project filter initialization failed:', error);
+                // Show minimal fallback UI
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    projectsSection.innerHTML = `
+                        <div class="fallback-projects">
+                            <h2>Projects</h2>
+                            <p>Project filtering is temporarily unavailable. <button onclick="location.reload()">Reload</button></p>
+                        </div>
+                    `;
+                }
+            }
+        }
+    }, 5000);
 }
 
 function initSocialProof() {

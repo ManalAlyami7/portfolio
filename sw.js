@@ -1,5 +1,6 @@
 // sw.js - Service Worker for offline support
-const CACHE_NAME = 'portfolio-v1';
+const CACHE_VERSION = '2026-02-02-001'; // Update on each deploy
+const CACHE_NAME = `portfolio-${CACHE_VERSION}`;
 const urlsToCache = [
     '/',
     '/portfolio/',
@@ -69,6 +70,13 @@ self.addEventListener('fetch', (event) => {
 });
 
 // Clean up old caches
+// Add update notification
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') {
+        self.skipWaiting();
+    }
+});
+
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then(cacheNames => {

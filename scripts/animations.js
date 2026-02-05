@@ -38,53 +38,79 @@ document.addEventListener('DOMContentLoaded', () => {
     initMicroInteractions();
 });
 
+// Class to manage card tilt interactions
+class CardTiltManager {
+    constructor(card) {
+        this.card = card;
+        this.rafId = null;
+        this.lastX = 0;
+        this.lastY = 0;
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        
+        this.card.addEventListener('mousemove', this.handleMouseMove);
+        this.card.addEventListener('mouseleave', this.handleMouseLeave);
+    }
+    
+    handleMouseMove(e) {
+        if (this.rafId) return; // Skip if already scheduled
+        
+        this.rafId = requestAnimationFrame(() => {
+            const rect = this.card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Only update if movement is significant
+            if (Math.abs(x - this.lastX) > 5 || Math.abs(y - this.lastY) > 5) {
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / 10);
+                const rotateY = ((centerX - x) / 10);
+                
+                // Use CSS custom properties instead of direct transform
+                this.card.style.setProperty('--rotate-x', `${rotateX}deg`);
+                this.card.style.setProperty('--rotate-y', `${rotateY}deg`);
+                
+                this.lastX = x;
+                this.lastY = y;
+            }
+            
+            this.rafId = null;
+        });
+    }
+    
+    handleMouseLeave() {
+        if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
+        this.card.style.removeProperty('--rotate-x');
+        this.card.style.removeProperty('--rotate-y');
+    }
+    
+    destroy() {
+        this.card.removeEventListener('mousemove', this.handleMouseMove);
+        this.card.removeEventListener('mouseleave', this.handleMouseLeave);
+        if (this.rafId) cancelAnimationFrame(this.rafId);
+    }
+}
+
+// Store instances for cleanup
+let tiltManagers = [];
+
 function initMicroInteractions() {
+    // Clean up any existing managers
+    if (tiltManagers.length > 0) {
+        tiltManagers.forEach(manager => manager.destroy());
+        tiltManagers = [];
+    }
+    
     // Add hover effects for project cards
     const projectCards = document.querySelectorAll('.project-card');
     
-    projectCards.forEach(card => {
-        let rafId = null;
-        let lastX = 0;
-        let lastY = 0;
-        
-        // Throttled tilt effect
-        card.addEventListener('mousemove', (e) => {
-            if (rafId) return; // Skip if already scheduled
-            
-            rafId = requestAnimationFrame(() => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Only update if movement is significant
-                if (Math.abs(x - lastX) > 5 || Math.abs(y - lastY) > 5) {
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = ((y - centerY) / 10);
-                    const rotateY = ((centerX - x) / 10);
-                    
-                    // Use CSS custom properties instead of direct transform
-                    card.style.setProperty('--rotate-x', `${rotateX}deg`);
-                    card.style.setProperty('--rotate-y', `${rotateY}deg`);
-                    
-                    lastX = x;
-                    lastY = y;
-                }
-                
-                rafId = null;
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-            }
-            card.style.removeProperty('--rotate-x');
-            card.style.removeProperty('--rotate-y');
-        });
-    });
+    // Create tilt managers for each card
+    tiltManagers = Array.from(projectCards).map(card => new CardTiltManager(card));
     
     // Add button pulse effect
     const buttons = document.querySelectorAll('.btn');
@@ -115,6 +141,14 @@ function initMicroInteractions() {
         button.style.animation = 'subtle-pulse 2s infinite';
     });
 }
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (tiltManagers.length > 0) {
+        tiltManagers.forEach(manager => manager.destroy());
+        tiltManagers = [];
+    }
+});
 
 // Add keyframe animations if they don't exist
 if (!document.getElementById('dynamic-animations')) {
