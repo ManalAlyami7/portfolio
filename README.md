@@ -1,133 +1,119 @@
-# Manal Alyami - Professional Portfolio ✅ Updated
+# Manal Alyami — Portfolio
 
-A modern, responsive portfolio website showcasing expertise in Data Science and AI Engineering with exceptional UX design.
-
-## 🌟 Key Features
-
-- **Modern Design**: Clean, professional interface with enhanced UX principles
-- **Dark Mode**: Fully responsive theme toggle with CSS variables
-- **SEO Optimized**: Complete meta tags, sitemap, and robots.txt
-- **Mobile First**: Responsive design that works on all devices
-- **Performance Focused**: Optimized asset loading and caching strategies
-- **Accessibility**: WCAG compliant with proper contrast ratios
-
-## 🛠️ Technologies Used
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Styling**: CSS Variables, Flexbox, Grid, Custom Properties
-- **Fonts**: Inter (body), Space Grotesk (headers)
-- **Icons**: Font Awesome 6
-- **Deployment**: GitHub Pages
-
-## 🚀 Quick Start
-
-1. Clone the repository:
-```bash
-git clone https://github.com/ManalAlyami7/portfolio.git
-```
-
-2. Navigate to the project directory:
-```bash
-cd portfolio
-```
-
-3. Serve locally:
-```bash
-python -m http.server 8000
-```
-
-4. Open your browser to `http://localhost:8000`
-
-## 📁 Project Structure
-
-```
-portfolio/
-├── components/          # HTML component files
-│   ├── about.html
-│   ├── contact.html
-│   ├── experience.html
-│   ├── header.html
-│   ├── hero.html
-│   ├── projects.html
-│   └── social-proof.html
-├── styles/             # CSS files
-│   ├── global.css
-│   ├── hero.css
-│   ├── projects.css
-│   └── ... (other component styles)
-├── scripts/            # JavaScript files
-│   ├── dark-mode.js
-│   ├── navigation.js
-│   └── ... (other functionality)
-├── images/             # Image assets
-├── documents/          # PDF documents and recommendations
-├── index.html          # Main HTML file
-├── sitemap.xml         # SEO sitemap
-└── robots.txt          # Search engine directives
-```
-
-## 🎨 Design Highlights
-
-- **UX-First Approach**: Designed with user experience principles
-- **Visual Hierarchy**: Clear typography and spacing systems
-- **Interactive Elements**: Smooth animations and micro-interactions
-- **Professional Color Scheme**: Green primary with blue accents
-- **Component-Based Architecture**: Modular and maintainable structure
-
-## 🔧 Customization
-
-### Colors
-Modify CSS variables in `styles/global.css`:
-```css
-:root {
-    --primary: #2e5939;
-    --accent-bright: #3b82f6;
-    --bg-primary: #f8fafc;
-}
-```
-
-### Fonts
-Update font families in `styles/global.css`:
-```css
-body { font-family: "Inter", sans-serif; }
-h1, h2, h3 { font-family: "Space Grotesk", sans-serif; }
-```
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: 768px and below
-- **Tablet**: 769px - 1024px
-- **Desktop**: 1025px and above
-
-## 🌐 Deployment
-
-This portfolio is configured for GitHub Pages deployment:
-
-1. Go to repository Settings
-2. Navigate to Pages section
-3. Select "Deploy from a branch"
-4. Choose "main" branch and "/ (root)" folder
-5. Your site will be available at `https://username.github.io/portfolio`
-
-## 📈 SEO Features
-
-- Complete Open Graph and Twitter meta tags
-- XML sitemap for search engine indexing
-- Robots.txt for crawl directives
-- Semantic HTML structure
-- Schema.org structured data
-
-## 🤝 Contributing
-
-This is a personal portfolio project, but feel free to fork and use as inspiration for your own portfolio!
-
-## 📞 Contact
-
-**Manal Alyami**
-- Email: Manalalyami7@gmail.com
-- LinkedIn: [linkedin.com/in/manal-alyami](https://linkedin.com/in/manal-alyami)
-- GitHub: [github.com/ManalAlyami7](https://github.com/ManalAlyami7)
+Personal portfolio website for Manal Alyami, AI Engineer & Data Scientist.  
+Live at: [manalalyami7.github.io/portfolio](https://manalalyami7.github.io/portfolio)
 
 ---
 
-*Built with ❤️ using modern web technologies*
+## Features
+
+- **Dark editorial theme** — deep navy background (`#080e1a`) with emerald accent (`#10d9a0`)
+- **Project filter system** — filter by All / Web Development / Mobile Apps / AI & Machine Learning / Data Science
+- **Show More / Show Less** — collapses project grid to 6 cards by default, expands on demand
+- **Scroll reveal animations** — sections and cards fade in on scroll via IntersectionObserver
+- **Responsive** — 3-col desktop → 2-col tablet → 1-col mobile with hamburger nav
+- **Accessible** — `focus-visible` styles, `aria` labels, `lang` attribute, semantic HTML
+- **Favicon** — inline SVG MA monogram, no external file needed
+- **CV download** — direct download button in hero linking to AI Engineer CV
+
+---
+
+## Tech Stack
+
+- **HTML5 / CSS3 / Vanilla JS** — no frameworks
+- **Fonts** — [Syne](https://fonts.google.com/specimen/Syne) (headings) + [DM Sans](https://fonts.google.com/specimen/DM+Sans) (body) via Google Fonts
+- **Icons** — Font Awesome 6
+- **Deployment** — GitHub Pages
+
+---
+
+## File Structure
+
+```
+portfolio/
+├── index.html              # Main HTML file
+├── css/
+│   └── styles.css          # All styles — variables, layout, components, responsive
+├── js/
+│   └── main.js             # Nav toggle, project filter, show-more, scroll reveal, read-more
+└── assets/
+    └── Manal Salem Alyami (AI Engineer).pdf   # CV download
+```
+
+---
+
+## Sections
+
+| Section | ID |
+|---|---|
+| Hero | `#home` |
+| Projects | `#projects` |
+| Experience | `#experience` |
+| Education | `#education` |
+| Certifications | `#certifications` |
+| Recommendations | `#social-proof` |
+| Contact | `#contact` |
+
+---
+
+## Project Filter Categories
+
+Each project card uses a `data-category` attribute with space-separated tokens:
+
+| Token | Label |
+|---|---|
+| `all` | All Projects |
+| `web` | Web Development |
+| `mobile` | Mobile Apps |
+| `ai` | AI & Machine Learning |
+| `data` | Data Science |
+
+To add a new project, copy any `.project-card` block in `index.html` and set `data-category` to the appropriate token(s).
+
+---
+
+## Color Variables
+
+Defined in `:root` inside `css/styles.css`:
+
+```css
+--primary: #10d9a0;          /* Emerald accent */
+--bg: #080e1a;               /* Page background */
+--bg-card: #0d1526;          /* Card background */
+--bg-section-alt: #0a1220;   /* Alternate section background */
+--text: #b8cceb;             /* Body text */
+--text-heading: #e4eefb;     /* Heading text */
+--text-muted: #607a9e;       /* Muted/secondary text */
+```
+
+---
+
+## Running Locally
+
+```bash
+git clone https://github.com/ManalAlyami7/portfolio.git
+cd portfolio
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+---
+
+## Deployment
+
+Deployed via GitHub Pages:
+
+1. Go to repository **Settings → Pages**
+2. Source: **Deploy from a branch**
+3. Branch: **main**, folder: **/ (root)**
+4. Site will be live at `https://manalalyami7.github.io/portfolio`
+
+---
+
+## Contact
+
+**Manal Alyami**  
+Email: Manalalyami7@gmail.com  
+LinkedIn: [linkedin.com/in/manal-alyami](https://linkedin.com/in/manal-alyami)  
+GitHub: [github.com/ManalAlyami7](https://github.com/ManalAlyami7)
