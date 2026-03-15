@@ -124,7 +124,7 @@ button:focus-visible {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(8, 14, 26, 0.88);
+    background: rgba(7, 17, 30, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
@@ -222,14 +222,14 @@ button:focus-visible {
 
 .hero-banner::before {
     width: 550px; height: 550px;
-    background: radial-gradient(circle, rgba(16,217,160,0.07) 0%, transparent 68%);
+    background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 68%);
     top: -120px; left: -120px;
     animation: orbPulse 8s ease-in-out infinite;
 }
 
 .hero-banner::after {
     width: 420px; height: 420px;
-    background: radial-gradient(circle, rgba(16,217,160,0.05) 0%, transparent 68%);
+    background: radial-gradient(circle, rgba(201,169,110,0.05) 0%, transparent 68%);
     bottom: -80px; right: -60px;
     animation: orbPulse 8s 4s ease-in-out infinite;
 }
@@ -287,15 +287,15 @@ button:focus-visible {
 
 .btn-primary {
     background: var(--primary);
-    color: #060d18;
+    color: #0d0a05;
     border: 1.5px solid var(--primary);
     font-weight: 600;
 }
 
 .btn-primary:hover {
-    background: #1af7b8;
-    border-color: #1af7b8;
-    box-shadow: 0 8px 28px rgba(16,217,160,0.35);
+    background: #dbbe85;
+    border-color: #dbbe85;
+    box-shadow: 0 8px 28px rgba(201,169,110,0.35);
 }
 
 .btn-secondary {
@@ -307,7 +307,7 @@ button:focus-visible {
 .btn-secondary:hover {
     border-color: var(--primary);
     color: var(--primary);
-    box-shadow: 0 8px 28px rgba(16,217,160,0.12);
+    box-shadow: 0 8px 28px rgba(201,169,110,0.12);
 }
 
 .btn-ghost {
@@ -318,7 +318,7 @@ button:focus-visible {
 
 .btn-ghost:hover {
     color: var(--primary);
-    border-color: rgba(16,217,160,0.2);
+    border-color: rgba(201,169,110,0.2);
 }
 
 .btn i { margin-right: 6px; font-size: 0.8em; }
@@ -353,15 +353,13 @@ button:focus-visible {
 
 .filter-btn.active {
     background: var(--primary-dim);
-    border-color: rgba(16,217,160,0.4);
+    border-color: rgba(201,169,110,0.4);
     color: var(--primary);
-    box-shadow: 0 0 14px rgba(16,217,160,0.1);
+    box-shadow: 0 0 14px rgba(201,169,110,0.1);
 }
 
 /* ============================================================
    PROJECTS GRID
-   Featured card: full-width hero row, splits content + tags
-   Rest: 3-col, equal height per row via stretch
    ============================================================ */
 .projects-grid {
     display: grid;
@@ -370,7 +368,6 @@ button:focus-visible {
     align-items: stretch;
 }
 
-/* Shared card base */
 .project-card {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
@@ -392,7 +389,6 @@ button:focus-visible {
     line-height: 1.75;
 }
 
-/* Top shimmer line on hover */
 .project-card::before {
     content: '';
     position: absolute;
@@ -412,11 +408,9 @@ button:focus-visible {
 
 .project-card:hover::before { opacity: 1; }
 
-/* Push tags to bottom */
 .project-card .tags { margin-top: auto; padding-top: 16px; }
 .project-card .link { margin-top: 12px; flex-shrink: 0; }
 
-/* Featured — spans all 3 cols, side-by-side layout */
 .project-card.featured {
     grid-column: 1 / -1;
     display: grid;
@@ -424,8 +418,8 @@ button:focus-visible {
     grid-template-rows: auto 1fr auto;
     column-gap: 40px;
     align-items: start;
-    border-color: rgba(16,217,160,0.2);
-    background: linear-gradient(135deg, #0d1526 0%, #0f1e32 100%);
+    border-color: rgba(201,169,110,0.2);
+    background: linear-gradient(135deg, #0b1828 0%, #0f1e32 100%);
     padding: 36px;
 }
 
@@ -444,7 +438,6 @@ button:focus-visible {
     align-content: start;
 }
 
-/* Category filter states */
 .project-card.hidden-by-filter,
 .project-card.hidden-by-more { display: none; }
 
@@ -506,7 +499,7 @@ button:focus-visible {
     font-size: var(--fs-xs);
     font-weight: 500;
     letter-spacing: 0.02em;
-    border: 1px solid rgba(16,217,160,0.14);
+    border: 1px solid rgba(201,169,110,0.14);
 }
 
 .link {
@@ -553,7 +546,7 @@ button:focus-visible {
 .btn-show-more:hover {
     border-color: var(--border-hover);
     color: var(--primary);
-    box-shadow: 0 0 18px rgba(16,217,160,0.12);
+    box-shadow: 0 0 18px rgba(201,169,110,0.12);
     transform: translateY(-1px);
 }
 
@@ -611,7 +604,7 @@ button:focus-visible {
     background: var(--primary-dim);
     padding: 5px 13px;
     border-radius: 20px;
-    border: 1px solid rgba(16,217,160,0.14);
+    border: 1px solid rgba(201,169,110,0.14);
     white-space: nowrap;
     letter-spacing: 0.02em;
 }
@@ -638,8 +631,6 @@ button:focus-visible {
 
 /* ============================================================
    EDUCATION GRID
-   Two cards side by side, each with a colored top accent
-   and an icon+degree layout
    ============================================================ */
 .edu-grid {
     display: grid;
@@ -671,7 +662,7 @@ button:focus-visible {
     bottom: -30px; right: -30px;
     width: 100px; height: 100px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(16,217,160,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -701,7 +692,6 @@ button:focus-visible {
 
 /* ============================================================
    CERTIFICATIONS GRID
-   Horizontal pill rows — scannable, no card bloat
    ============================================================ */
 .certs-grid {
     display: grid;
@@ -728,7 +718,6 @@ button:focus-visible {
     transform: translateX(4px);
 }
 
-/* Icon circle */
 .cert-card i {
     display: flex;
     align-items: center;
@@ -736,7 +725,7 @@ button:focus-visible {
     width: 36px; height: 36px;
     border-radius: 50%;
     background: var(--primary-dim);
-    border: 1px solid rgba(16,217,160,0.18);
+    border: 1px solid rgba(201,169,110,0.18);
     color: var(--primary);
     font-size: 0.9rem;
     flex-shrink: 0;
@@ -760,12 +749,11 @@ button:focus-visible {
     color: var(--text-muted);
 }
 
-/* Year badge on right */
 .cert-year {
     font-size: var(--fs-xs);
     color: var(--primary);
     background: var(--primary-dim);
-    border: 1px solid rgba(16,217,160,0.14);
+    border: 1px solid rgba(201,169,110,0.14);
     padding: 3px 10px;
     border-radius: 20px;
     white-space: nowrap;
@@ -774,7 +762,6 @@ button:focus-visible {
 
 /* ============================================================
    TESTIMONIALS GRID
-   2-col, large quote mark accent, author initials avatar
    ============================================================ */
 .testimonial-grid {
     display: grid;
@@ -802,7 +789,6 @@ button:focus-visible {
     background: var(--bg-card-hover);
 }
 
-/* Large decorative quote mark */
 .testimonial-card::before {
     content: '\201C';
     position: absolute;
@@ -824,12 +810,11 @@ button:focus-visible {
     border-bottom: 1px solid var(--border);
 }
 
-/* Initials avatar */
 .testimonial-avatar {
     width: 42px; height: 42px;
     border-radius: 50%;
     background: var(--primary-dim);
-    border: 1px solid rgba(16,217,160,0.2);
+    border: 1px solid rgba(201,169,110,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -910,7 +895,7 @@ button:focus-visible {
 .contact-icon-link:hover {
     border-color: var(--primary);
     color: var(--primary);
-    box-shadow: 0 0 22px rgba(16,217,160,0.28);
+    box-shadow: 0 0 22px rgba(201,169,110,0.28);
     transform: translateY(-3px);
 }
 
@@ -978,7 +963,7 @@ button:focus-visible {
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(8,14,26,0.97);
+        background: rgba(7,17,30,0.97);
         backdrop-filter: blur(16px);
         padding: 10px 0 20px;
         border-top: 1px solid var(--border);
@@ -1040,27 +1025,23 @@ button:focus-visible {
 /* ============================================================
    PUBLICATIONS
    ============================================================ */
-/* ============================================================
-   PUBLICATIONS
-   ============================================================ */
 .publication-card {
     max-width: 860px;
     margin: 0 auto;
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(16, 217, 160, 0.22);
+    border: 1px solid rgba(201, 169, 110, 0.22);
     border-top: none;
     box-shadow: var(--shadow-card), var(--shadow-glow);
     padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    background: linear-gradient(140deg, #0d1526 0%, #0f1e32 100%);
+    background: linear-gradient(140deg, #0b1828 0%, #0f1e32 100%);
     position: relative;
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
-/* Top shimmer line — always visible, stronger than project cards */
 .publication-card::before {
     content: '';
     position: absolute;
@@ -1070,23 +1051,21 @@ button:focus-visible {
     opacity: 0.8;
 }
 
-/* Decorative background glow orb */
 .publication-card::after {
     content: '';
     position: absolute;
     bottom: -60px; right: -60px;
     width: 220px; height: 220px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(16,217,160,0.07) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
     pointer-events: none;
 }
 
 .publication-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-card), 0 0 48px rgba(16, 217, 160, 0.18);
+    box-shadow: var(--shadow-card), 0 0 48px rgba(201, 169, 110, 0.18);
 }
 
-/* Top row: conference badge + meta chips */
 .publication-top {
     display: flex;
     align-items: center;
@@ -1099,7 +1078,7 @@ button:focus-visible {
     align-items: center;
     gap: 8px;
     background: var(--primary-dim);
-    border: 1px solid rgba(16, 217, 160, 0.25);
+    border: 1px solid rgba(201, 169, 110, 0.25);
     border-radius: 20px;
     padding: 6px 14px;
 }
@@ -1135,7 +1114,6 @@ button:focus-visible {
     color: var(--primary);
 }
 
-/* Title */
 .publication-body h3 {
     font-family: var(--font-display);
     font-size: var(--fs-2xl);
@@ -1145,7 +1123,6 @@ button:focus-visible {
     line-height: 1.35;
 }
 
-/* Authors + venue row */
 .publication-meta {
     display: flex;
     flex-direction: column;
@@ -1168,13 +1145,12 @@ button:focus-visible {
     font-style: italic;
 }
 
-/* Contribution block */
 .publication-contribution {
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    background: rgba(16,217,160,0.05);
-    border: 1px solid rgba(16,217,160,0.12);
+    background: rgba(201,169,110,0.05);
+    border: 1px solid rgba(201,169,110,0.12);
     border-left: 3px solid var(--primary);
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
     padding: 16px 20px;
@@ -1194,7 +1170,6 @@ button:focus-visible {
     margin: 0;
 }
 
-/* Footer: button + DOI */
 .publication-footer {
     display: flex;
     align-items: center;
@@ -1211,9 +1186,6 @@ button:focus-visible {
     font-family: monospace;
 }
 
-/* ============================================================
-   PUBLICATIONS — RESPONSIVE
-   ============================================================ */
 @media (max-width: 600px) {
     .publication-card {
         padding: 24px;
